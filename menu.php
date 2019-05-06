@@ -141,16 +141,15 @@ include('pagelinks.php');
                     </ul>
                   </li>
                   
-                 
-                                  
+            
                 
                 </ul>
               </div> 
                   
             <div class="menu_section">
-                <h3>Actual RevEx</h3>
+                <h3>Financials</h3>
                  <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-tasks"></i>Revenue<span class="fa fa-chevron-down"></span></a>
+                 <li><a><i class="glyphicon glyphicon-tasks"></i>Actual Revenue<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
               
 						  
@@ -164,7 +163,34 @@ include('pagelinks.php');
                
                 </ul>
                 <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-tasks"></i>Expenses<span class="fa fa-chevron-down"></span></a>
+                 <li><a><i class="glyphicon glyphicon-tasks"></i>Actual Expenses<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+              
+						  
+                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
+          
+                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
+                      
+                    </ul>
+                  </li>
+                            
+                </ul>
+                <ul class="nav side-menu">
+                 <li><a><i class="glyphicon glyphicon-list-alt"></i>Budget Revenue<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+              
+						  
+                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
+          
+                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Type</a></li>
+                      
+                    </ul>
+                  </li>
+                  
+               
+                </ul>
+                <ul class="nav side-menu">
+                 <li><a><i class="glyphicon glyphicon-list-alt"></i>Budget Expenses<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
               
 						  
@@ -179,37 +205,7 @@ include('pagelinks.php');
                 </ul>
               </div>  
               
-                <div class="menu_section">
-                <h3>Budget RevEx</h3>
-                 <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-list-alt"></i>Revenue<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu"> 
               
-						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
-          
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Type</a></li>
-                      
-                    </ul>
-                  </li>
-                  
-               
-                </ul>
-                <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-list-alt"></i>Expenses<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu"> 
-              
-						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
-          
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
-                      
-                    </ul>
-                  </li>
-                  
-               
-                </ul>
-              </div>  
             
                <div class="menu_section">
                 <h3>Website Administration</h3>
