@@ -144,7 +144,6 @@ $(document).ready(function(){
 		var ExpCategory = $('#ExpCategory').val();
 		var Description = $('#Description').val();
 		
-	//`exptypeID`,`expType`,`ExpCategory`,`Description`
 
 		if(expType != '' && ExpCategory != '')
 		{
@@ -174,21 +173,20 @@ $(document).ready(function(){
 	$(document).on('click', '.update', function(){
 		var exptypeID = $(this).attr("exptypeID");
 		$.ajax({
-			url:"fetch_singleExpense.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleExpenseType.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{expenseID:expenseID},
+			data:{exptypeID:exptypeID},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#Type').val(data.Type);
-				$('#Amount').val(data.Amount);
-				$('#DateRecorded').val(data.DateRecorded);
+				$('#expType').val(data.expType);
+				$('#ExpCategory').val(data.ExpCategory);
 				$('#Description').val(data.Description);
-				$('#Site').val(data.Site);
+				
 			
-				$('.modal-title').text("Edit Expense");
+				$('.modal-title').text("Edit Expense Type");
 				$('#exptypeID').val(exptypeID);
 				
 				$('#action').val("Edit");
@@ -202,7 +200,7 @@ $(document).ready(function(){
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteExpense.php?Id=<?php echo $Id;?>",
+				url:"deleteExpenseType.php?Id=<?php echo $Id;?>",
 				method:"POST",
 				data:{exptypeID:exptypeID},
 				success:function(data)
