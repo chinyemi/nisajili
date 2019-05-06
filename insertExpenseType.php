@@ -6,7 +6,7 @@ require_once('header.php');
 ?>
 <?php
 
-include('functionExpense.php');
+include('functionExpenseType.php');
 
 if(isset($_POST["operation"]))
 {
