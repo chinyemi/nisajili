@@ -119,7 +119,6 @@ $(document).ready(function(){
 		$('#operation').val("Add");
 		
 	});
-//`exptypeID`,`expType`,`ExpCategory`,`Description`
 	var dataTable = $('#user_data').DataTable({
 		"processing":true,
 		"serverSide":true,
@@ -141,14 +140,13 @@ $(document).ready(function(){
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var Type = $('#Type').val();
-		var Amount = $('#Amount').val();
-		var DateRecorded = $('#DateRecorded').val();
+		var expType = $('#expType').val();
+		var ExpCategory = $('#ExpCategory').val();
 		var Description = $('#Description').val();
-		var Site = $('#Site').val();
 		
-	
-		if(Type != '' && Amount != '')
+	//`exptypeID`,`expType`,`ExpCategory`,`Description`
+
+		if(expType != '' && ExpCategory != '')
 		{
 			$.ajax({
 				url:"insertExpenseType.php?Id=<?php echo $Id;?>",
