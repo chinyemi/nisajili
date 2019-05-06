@@ -17,7 +17,7 @@ if(isset($_POST["exptypeID"]))
 	);
 	$result = $statement->execute(
 		array(
-			':exptypeID'	=>	$_POST["expenseID"]
+			':exptypeID'	=>	$_POST["exptypeID"]
 		)
 	);
 	
