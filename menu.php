@@ -148,7 +148,39 @@ include('pagelinks.php');
               </div> 
                   
             <div class="menu_section">
-                <h3>Expenses</h3>
+                <h3>Actual RevEx</h3>
+                 <ul class="nav side-menu">
+                 <li><a><i class="glyphicon glyphicon-tasks"></i>Revenue<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+              
+						  
+                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
+          
+                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
+                      
+                    </ul>
+                  </li>
+                  
+               
+                </ul>
+                <ul class="nav side-menu">
+                 <li><a><i class="glyphicon glyphicon-tasks"></i>Expenses<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+              
+						  
+                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
+          
+                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
+                      
+                    </ul>
+                  </li>
+                  
+               
+                </ul>
+              </div>  
+              
+               <div class="menu_section">
+                <h3>Budgeted RevEx</h3>
                 <ul class="nav side-menu">
                  <li><a><i class="glyphicon glyphicon-tasks"></i>General Expenses<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
