@@ -155,7 +155,7 @@ include('pagelinks.php');
 						  
                         <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
           
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Type</a></li>
+                        
                       
                     </ul>
                   </li>
@@ -169,7 +169,7 @@ include('pagelinks.php');
 						  
                         <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
           
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
+                         
                       
                     </ul>
                   </li>
