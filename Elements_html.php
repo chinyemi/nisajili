@@ -149,17 +149,15 @@ $(document).ready(function(){
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var Type = $('#Type').val();
-		var Amount = $('#Amount').val();
-		var DateRecorded = $('#DateRecorded').val();
-		var Description = $('#Description').val();
-		var Site = $('#Site').val();
-		
+		var Content = $('#Content').val();
+		var Category = $('#Category').val();
+		var Toggle = $('#Toggle').val();
+		var Position = $('#Position').val();
 	
-		if(Type != '' && Amount != '')
+		if(Content != '' && Category != '')
 		{
 			$.ajax({
-				url:"insertExpense.php?Id=<?php echo $Id;?>",
+				url:"insertElement.php?Id=<?php echo $Id;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -180,26 +178,25 @@ $(document).ready(function(){
 	});
 	
 
-
 	$(document).on('click', '.update', function(){
-		var expenseID = $(this).attr("expenseID");
+		var elementID = $(this).attr("elementID");
 		$.ajax({
-			url:"fetch_singleExpense.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleElement.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{expenseID:expenseID},
+			data:{elementID:elementID},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#Type').val(data.Type);
-				$('#Amount').val(data.Amount);
-				$('#DateRecorded').val(data.DateRecorded);
-				$('#Description').val(data.Description);
-				$('#Site').val(data.Site);
+				$('#Content').val(data.Content);
+				$('#Category').val(data.Category);
+				$('#Toggle').val(data.Toggle);
+				$('#Position').val(data.Position);
+				
 			
 				$('.modal-title').text("Edit Expense");
-				$('#expenseID').val(expenseID);
+				$('#elementID').val(elementID);
 				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
@@ -208,13 +205,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var expenseID = $(this).attr("expenseID");
+		var elementID = $(this).attr("elementID");
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteExpense.php?Id=<?php echo $Id;?>",
+				url:"deleteElement.php?Id=<?php echo $Id;?>",
 				method:"POST",
-				data:{expenseID:expenseID},
+				data:{elementID:elementID},
 				success:function(data)
 				{
 					alert(data);
