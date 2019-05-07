@@ -218,7 +218,8 @@ include('pagelinks.php');
                       <li><a href="PageSelector.php?pageID=FrameContent_Web_Video&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Web | Videos</a></li>
                       
                       <li><a href="PageSelector.php?pageID=FrameContent_Testimonies&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Testimonies | Feedback</a></li>
-          
+                      
+                      <li><a href="PageSelector.php?pageID=FrameContent_Element&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Web | Element</a></li>
                     
                         
                       <?php } ?>
