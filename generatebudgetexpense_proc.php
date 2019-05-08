@@ -33,7 +33,7 @@ $result='<div class="alert alert-success">Dashboard tabular site reports for Bud
   </head>
   <body>
    	
-  <h4 align="center">Generate Dashboard Tabular Reports For Budget Revenue</h4>
+  <h4 align="center">Generate Dashboard Tabular Reports For Budget Expenses</h4>
   	<div class="container">
   		<div class="row">
   			<div class="col-md-6 col-md-offset-3">

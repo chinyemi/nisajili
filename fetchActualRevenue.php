@@ -10,12 +10,13 @@ require_once('header.php');
 include('functionActualRevenue.php');
 $query = '';
 $output = array();
-$query .= "SELECT revenueID,`Type`,Amount,DateRecorded,Site,REPLACE(`Description`,'/','') as Description FROM actual_revenue";
+$query .= "SELECT revenueID,`Type`,Amount,DateRecorded,Site,REPLACE(`Description`,'/','') as Description,glsyear FROM actual_revenue ";
 if(isset($_POST["search"]["value"]))
 {
 	$query .= ' WHERE Site LIKE "%'.$_POST["search"]["value"].'%" ';
 	$query .= 'OR Amount LIKE "%'.$_POST["search"]["value"].'%" ';
 	$query .= 'OR Description LIKE "%'.$_POST["search"]["value"].'%" ';
+        $query .= 'OR glsyear LIKE "%'.$_POST["search"]["value"].'%" ';
 }
 
 if(isset($_POST["order"]))
@@ -47,7 +48,7 @@ foreach($result as $row)
 	$sub_array[] = $row["DateRecorded"];
         $sub_array[] = $row["Description"];
         $sub_array[] = $row["Site"];
-   
+        $sub_array[] = $row["glsyear"];
 
 	$sub_array[] = '<button type="button" name="update" revenueID="'.$row["revenueID"].'" class="btn btn-warning btn-xs update">Update</button>';
 	$sub_array[] = '<button type="button" name="delete" revenueID="'.$row["revenueID"].'" class="btn btn-danger btn-xs delete">Delete</button>';

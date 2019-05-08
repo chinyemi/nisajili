@@ -26,7 +26,7 @@ if(isset($_POST["revenueID"]))
 		$output["Description"] = $row["Description"];
 		$output["Site"] = $row["Site"];
                 $output["DateRecorded"] = $row["DateRecorded"];
-                
+                 $output["glsyear"] = $row["glsyear"];
 	
 		
 	}

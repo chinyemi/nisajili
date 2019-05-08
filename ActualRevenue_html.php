@@ -56,6 +56,8 @@ require_once('header.php');
                              <th>Date Recorded</th>
                              <th>Description</th>
                              <th>Site</th>
+                               <th>Season</th>
+                             
 							<th>Update</th>
 							<th>Delete</th>
 						
@@ -117,7 +119,20 @@ require_once('header.php');
 					</select>
 					<br />
 					
-					
+					<label>Season</label>
+					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<?php 
+					$getSiteSeason=mysqli_query($conn,"SELECT * FROM `siteseason`");
+		
+					?>
+                                        <select name="glsyear" id="glsyear" class="form-control" required>
+        			<option selected disabled>--Select Season--</option>
+        			<?php 	while ($rowSiteSeason=mysqli_fetch_array($getSiteSeason)) { ?>
+  					<option value="<?php echo $rowSiteSeason['Year']; ?>"><?php echo $rowSiteSeason['Year']."(". $rowSiteSeason['SeasonStatus'].")"; ?></option>
+  					
+ 	               <?php 	} ?>
+					</select>
+<br />
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="revenueID" id="revenueID" />
@@ -166,6 +181,7 @@ $(document).ready(function(){
 		var DateRecorded = $('#DateRecorded').val();
 		var Description = $('#Description').val();
 		var Site = $('#Site').val();
+                var glsyear = $('#glsyear').val();
 		
 	
 		if(Type != '' && Amount != '')
@@ -203,16 +219,13 @@ $(document).ready(function(){
 			success:function(data)
 			{
 				$('#userModal').modal('show');
-				
 				$('#Type').val(data.Type);
 				$('#Amount').val(data.Amount);
 				$('#DateRecorded').val(data.DateRecorded);
 				$('#Description').val(data.Description);
 				$('#Site').val(data.Site);
-			
-				$('.modal-title').text("Edit Revenue");
+                                $('.modal-title').text("Edit Revenue");
 				$('#revenueID').val(revenueID);
-				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}

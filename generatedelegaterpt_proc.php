@@ -2,7 +2,6 @@
 
 require_once('header.php');
 
-
 include 'sysfunctions.php';
 
 ?>
@@ -11,10 +10,9 @@ include 'sysfunctions.php';
 
 	if (isset($_POST["submit"])) {
 		
-		CreateDBVeiwsCarRpt($_POST['Season']); 
-                
+		CreateDBVeiwsDelegateRpt($_POST['Season']);
 	
-$result='<div class="alert alert-success">Dashboard tabular site reports for cars generated!</div>';
+$result='<div class="alert alert-success">Dashboard tabular site reports for delagates generated!</div>';
 	
 }
 ?>
@@ -34,20 +32,19 @@ $result='<div class="alert alert-success">Dashboard tabular site reports for car
   </head>
   <body>
    	
-  <h4 align="center">Generate Dashboard Tabular Reports For Cars</h4>
+  <h4 align="center">Generate Dashboard Tabular Reports For Delegates</h4>
   	<div class="container">
   		<div class="row">
   			<div class="col-md-6 col-md-offset-3">
   				
-				<form class="form-horizontal" role="form" method="post" action="generatecarrpt_proc.php?Id=<?php echo $Id;?>">
+				<form class="form-horizontal" role="form" method="post" action="generatedelegaterpt_proc.php?Id=<?php echo $Id;?>">
 					<div class="form-group">
 						<div class="col-sm-10 col-sm-offset-2">
 							<?php echo $result; ?>	
 						</div>
 					</div>
                    
-                    
-		<div class="form-group">
+                    	<div class="form-group">
 		<label for="Season" class="col-sm-2 control-label">Season</label>
 		<div class="col-sm-10">
 		 <?php $getseason=mysqli_query($conn,"SELECT * FROM `siteseason` ORDER BY `Year`"); ?>
@@ -61,8 +58,11 @@ $result='<div class="alert alert-success">Dashboard tabular site reports for car
 		</div>
 		
 	 </div>
+		
+		
+		<div class="form-group">
 						<div class="col-sm-10 col-sm-offset-2" align="center">
-							<input id="submit" name="submit" type="submit" value="Generate Delegate Site Reports" class="btn btn-primary">
+							<input id="submit" name="submit" type="submit" value="Create View for Delegate Site Reports" class="btn btn-primary">
 						</div>
 					</div>
 		

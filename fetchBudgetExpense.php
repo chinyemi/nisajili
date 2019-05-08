@@ -10,7 +10,7 @@ require_once('header.php');
 include('functionBudgetExpense.php');
 $query = '';
 $output = array();
-$query .= "SELECT `expenseID`,`Type`,`Amount`,`DateRecorded`,REPLACE(`Description`,'/','') Description ,`Site` FROM budget_expenses ";
+$query .= "SELECT `expenseID`,`Type`,`Amount`,`DateRecorded`,REPLACE(`Description`,'/','') Description ,`Site`,glsyear FROM budget_expenses ";
 if(isset($_POST["search"]["value"]))
 {
 	$query .= 'WHERE Type LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -47,6 +47,7 @@ foreach($result as $row)
 	$sub_array[] = $row["DateRecorded"];
     $sub_array[] = $row["Description"];
     $sub_array[] = $row["Site"];
+    $sub_array[] = $row["glsyear"];
 
 	$sub_array[] = '<button type="button" name="update" expenseID="'.$row["expenseID"].'" class="btn btn-warning btn-xs update">Update</button>';
 	$sub_array[] = '<button type="button" name="delete" expenseID="'.$row["expenseID"].'" class="btn btn-danger btn-xs delete">Delete</button>';

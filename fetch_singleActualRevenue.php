@@ -6,7 +6,7 @@ require_once('header.php');
 
 <?php
 
-include('functionActualRevenue.php.php');
+include('functionActualRevenue.php');
 if(isset($_POST["revenueID"]))
 {
 	$output = array();
@@ -26,7 +26,7 @@ if(isset($_POST["revenueID"]))
 		$output["Description"] = $row["Description"];
 		$output["Site"] = $row["Site"];
                 $output["DateRecorded"] = $row["DateRecorded"];
-                
+                $output["glsyear"] = $row["glsyear"];
 	
 		
 	}

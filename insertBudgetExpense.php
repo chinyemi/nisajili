@@ -17,8 +17,8 @@ if(isset($_POST["operation"]))
 		
 		
 		$statement = $connection->prepare("
-			INSERT INTO budget_expenses (Type, Amount, DateRecorded, Description, Site) 
-			VALUES (:Type, :Amount, :DateRecorded, :Description, :Site)
+			INSERT INTO budget_expenses (Type, Amount, DateRecorded, Description, Site,glsyear) 
+			VALUES (:Type, :Amount, :DateRecorded, :Description, :Site,:glsyear)
 		");
 		$result = $statement->execute(
 			array(
@@ -31,9 +31,8 @@ if(isset($_POST["operation"]))
 				':DateRecorded'	=>	$_POST["DateRecorded"],
 			    ':Description'	=>	$_POST["Description"],
 			    ':Site'	=>	$_POST["Site"],
-			   
-			
-			)
+                             ':glsyear'	=>	$_POST["glsyear"],
+                          )
 		);
 		if(!empty($result))
 		{

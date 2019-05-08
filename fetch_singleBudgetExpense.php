@@ -26,7 +26,7 @@ if(isset($_POST["expenseID"]))
 		$output["DateRecorded"] = $row["DateRecorded"];
 		$output["Description"] = $row["Description"];
 		$output["Site"] = $row["Site"];
-		
+		$output["glsyear"] = $row["glsyear"];
 	
 		
 	}

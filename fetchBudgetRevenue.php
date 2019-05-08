@@ -16,6 +16,8 @@ if (isset($_POST["search"]["value"])) {
     $query .= 'OR Description LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR DateRecorded LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR Site  LIKE "%' . $_POST["search"]["value"] . '%" ';
+    $query .= 'OR glsyear  LIKE "%' . $_POST["search"]["value"] . '%" ';
+    
 }
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'] . ' ' . $_POST['order']['0']['dir'] . ' ';
@@ -38,6 +40,8 @@ foreach ($result as $row) {
     $sub_array[] = $row["DateRecorded"];
     $sub_array[] = $row["Site"];
     $sub_array[] = $row["Description"];
+    $sub_array[] = $row["glsyear"];
+    
     $sub_array[] = '<button type="button" name="update" revenueID="' . $row["revenueID"] . '" class="btn btn-warning btn-xs update">Update</button>';
     $sub_array[] = '<button type="button" name="delete" revenueID="' . $row["revenueID"] . '" class="btn btn-danger btn-xs delete">Delete</button>';
     $data[] = $sub_array;

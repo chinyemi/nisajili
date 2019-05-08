@@ -1,66 +1,79 @@
-<?php
+<?php 
 
 //Create Reports Views for Site Delegates
 
 
-function CreateDBVeiwsDelegateRpt($season) {
+function CreateDBVeiwsDelegateRpt($CurrYear) {
+	
+include '../Includes.php';	
+	
+	$getSiteInfoDelegate=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-    include '../Includes.php';
+   for ($i = 1; $i <= mysqli_num_rows($getSiteInfoDelegate); $i++) {
+  		
+  $rowSiteNamesDelegate=mysqli_fetch_array($getSiteInfoDelegate);	
+   
+	   
+$viewnameDelegate='vw_delegate_'.$CurrYear.'_'.$rowSiteNamesDelegate['sitename'];
+	   
+	   
 
-    $getSiteInfoDelegate = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
-
-    for ($i = 1; $i <= mysqli_num_rows($getSiteInfoDelegate); $i++) {
-
-        $rowSiteNamesDelegate = mysqli_fetch_array($getSiteInfoDelegate);
-
-
-        $viewnameDelegate = 'vw_delegate_' . $season . '_' . $rowSiteNamesDelegate['sitename'];
-
-
-
-        $sqlDelegate = "CREATE OR REPLACE
+$sqlDelegate="CREATE OR REPLACE
   
-    VIEW " . DB_DATABASE . "." . $viewnameDelegate . " 
+    VIEW ".DB_DATABASE.".".$viewnameDelegate." 
     AS
-(SELECT * FROM `delegate` WHERE `glsyear`='" . $season . "' AND `glssite`='" . $rowSiteNamesDelegate['sitename'] . "');";
+(SELECT * FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite`='".$rowSiteNamesDelegate['sitename']."');";
+	   
+	 
 
+$createViewsDelagate=mysqli_query($conn,$sqlDelegate);
+	   
+	   
+              
+   } 
 
-
-        $createViewsDelagate = mysqli_query($conn, $sqlDelegate);
-    }
+	
 }
+
 
 //Create Reports Views for Site Car Parking
 
 
-function CreateDBVeiwsCarRpt($season) {
+function CreateDBVeiwsCarRpt($CurrYear) {
+	
+include '../Includes.php';	
+	
+	$getSiteInfoCarParking=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-    include '../Includes.php';
+   for ($i = 1; $i <= mysqli_num_rows($getSiteInfoCarParking); $i++) {
+  		
+  $rowSiteNamesCarParking=mysqli_fetch_array($getSiteInfoCarParking);	
+   
+	   
+$viewnameCarParking='vw_delegate_'.$CurrYear.'_'.$rowSiteNamesCarParking['sitename']."_CarParking";
+	   
+	   
 
-    $getSiteInfoCarParking = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
-
-    for ($i = 1; $i <= mysqli_num_rows($getSiteInfoCarParking); $i++) {
-
-        $rowSiteNamesCarParking = mysqli_fetch_array($getSiteInfoCarParking);
-
-
-        $viewnameCarParking = 'vw_delegate_' . $season . '_' . $rowSiteNamesCarParking['sitename'] . "_CarParking";
-
-
-
-        $sqlCarParking = "CREATE OR REPLACE
+$sqlCarParking="CREATE OR REPLACE
   
-    VIEW " . DB_DATABASE . "." . $viewnameCarParking . " 
+    VIEW ".DB_DATABASE.".".$viewnameCarParking." 
     AS
-(SELECT * FROM `delegate` WHERE `glsyear`='" . $season . "' AND `glssite`='" . $rowSiteNamesCarParking['sitename'] . "' AND `gatepass`='YES');";
+(SELECT * FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite`='".$rowSiteNamesCarParking['sitename']."' AND `gatepass`='YES');";
+	   
+	 
 
+$createViewsCarParking=mysqli_query($conn,$sqlCarParking);
+	   
+	   
+              
+   } 
 
-
-        $createViewsCarParking = mysqli_query($conn, $sqlCarParking);
-    }
+	
 }
 
-function CreateDBVeiwsActualRevenue($season) {
+
+
+function CreateDBVeiwsActualRevenue($CurrYear) {
 
     include '../Includes.php';
 
@@ -69,17 +82,17 @@ function CreateDBVeiwsActualRevenue($season) {
     for ($i = 1; $i <= mysqli_num_rows($getSiteInfoActualRevenue); $i++) {
 
         $rowSiteActualRevenue = mysqli_fetch_array($getSiteInfoActualRevenue);
-     $viewnameActualRevenue = 'vw_actualrevenue_' . $season . '_' . $rowSiteActualRevenue['sitename'];
+     $viewnameActualRevenue = 'vw_actualrevenue_' . $CurrYear . '_' . $rowSiteActualRevenue['sitename'];
         $sqlActualRevenue = "CREATE OR REPLACE
   
     VIEW " . DB_DATABASE . "." . $viewnameActualRevenue . " 
     AS
-(SELECT * FROM `actual_revenue` WHERE `glsyear`='" . $season . "' AND `Site`='" . $rowSiteActualRevenue['sitename'] . "')";
+(SELECT * FROM `actual_revenue` WHERE `glsyear`='" . $CurrYear . "' AND `Site`='" . $rowSiteActualRevenue['sitename'] . "')";
         $createViewsActualRevenue = mysqli_query($conn, $sqlActualRevenue);
     }
 }
 
-function CreateDBVeiwsBudgetRevenue($season) {
+function CreateDBVeiwsBudgetRevenue($CurrYear) {
 
     include '../Includes.php';
 
@@ -88,18 +101,18 @@ function CreateDBVeiwsBudgetRevenue($season) {
     for ($i = 1; $i <= mysqli_num_rows($getSiteInfoBudgetRevenue); $i++) {
 
         $rowSiteBudgetRevenue = mysqli_fetch_array($getSiteInfoBudgetRevenue);
-     $viewnameBudgetRevenue = 'vw_budgetrevenue_' . $season . '_' . $rowSiteBudgetRevenue['sitename'];
+     $viewnameBudgetRevenue = 'vw_budgetrevenue_' . $CurrYear . '_' . $rowSiteBudgetRevenue['sitename'];
         $sqlActualRevenue = "CREATE OR REPLACE
   
     VIEW " . DB_DATABASE . "." . $viewnameBudgetRevenue . " 
     AS
-(SELECT * FROM `budget_revenue` WHERE `glsyear`='" . $season . "' AND `Site`='" . $rowSiteBudgetRevenue['sitename'] . "')";
+(SELECT * FROM `budget_revenue` WHERE `glsyear`='" . $CurrYear . "' AND `Site`='" . $rowSiteBudgetRevenue['sitename'] . "')";
         $createViewsBudgetRevenue = mysqli_query($conn, $sqlActualRevenue);
     }
 }
 
 
-function CreateDBVeiwsBudgetExpense($season) {
+function CreateDBVeiwsBudgetExpense($CurrYear) {
 
     include '../Includes.php';
 
@@ -108,17 +121,17 @@ function CreateDBVeiwsBudgetExpense($season) {
     for ($i = 1; $i <= mysqli_num_rows($getSiteInfoBudgetExpense); $i++) {
 
         $rowSiteBudgetExpense = mysqli_fetch_array($getSiteInfoBudgetExpense);
-     $viewnameBudgetExpense = 'vw_budgetexpenses_' . $season . '_' . $rowSiteBudgetExpense['sitename'];
+     $viewnameBudgetExpense = 'vw_budgetexpenses_' . $CurrYear . '_' . $rowSiteBudgetExpense['sitename'];
         $sqlBudgetExpense = "CREATE OR REPLACE
   
     VIEW " . DB_DATABASE . "." . $viewnameBudgetExpense . " 
     AS
-(SELECT * FROM `budget_expenses` WHERE `glsyear`='" . $season . "' AND `Site`='" . $rowSiteBudgetExpense['sitename'] . "')";
+(SELECT * FROM `budget_expenses` WHERE `glsyear`='" . $CurrYear . "' AND `Site`='" . $rowSiteBudgetExpense['sitename'] . "')";
         $createViewsBudgetRevenue = mysqli_query($conn, $sqlBudgetExpense);
     }
 }
 
-function CreateDBVeiwsActualExpense($season) {
+function CreateDBVeiwsActualExpense($CurrYear) {
 
     include '../Includes.php';
 
@@ -127,12 +140,12 @@ function CreateDBVeiwsActualExpense($season) {
     for ($i = 1; $i <= mysqli_num_rows($getSiteInfoActualExpense); $i++) {
 
         $rowSiteActualExpense = mysqli_fetch_array($getSiteInfoActualExpense);
-     $viewnameActualExpense = 'vw_actualexpenses_' . $season . '_' . $rowSiteActualExpense['sitename'];
+     $viewnameActualExpense = 'vw_actualexpenses_' . $CurrYear . '_' . $rowSiteActualExpense['sitename'];
         $sqlActualExpense = "CREATE OR REPLACE
   
     VIEW " . DB_DATABASE . "." . $viewnameActualExpense . " 
     AS
-(SELECT * FROM `expenses` WHERE `glsyear`='" . $season . "' AND `Site`='" . $rowSiteActualExpense['sitename'] . "')";
+(SELECT * FROM `actual_expenses` WHERE `glsyear`='" . $CurrYear . "' AND `Site`='" . $rowSiteActualExpense['sitename'] . "')";
         $createViewsActualRevenue = mysqli_query($conn, $sqlActualExpense);
     }
 }
@@ -140,91 +153,107 @@ function CreateDBVeiwsActualExpense($season) {
 
 
 //Get sites names list for graphs (seperated by commas eg. 'site1','site2','site3','site4','siten')
-function GraphSitenNames() {
+function GraphSitenNames() { 
+	
+include '../Includes.php';	
+	
+	$getSiteInfo=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-    include '../Includes.php';
-
-    $getSiteInfo = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
-
-    for ($i = 1; $i <= mysqli_num_rows($getSiteInfo); $i++) {
-
-        $rowSiteNames = mysqli_fetch_array($getSiteInfo);
-
-        $Sites.="'" . $rowSiteNames['sitename'] . "',";
-    }
-
-    $Sites = rtrim($Sites, ',');
-    echo $Sites;
-}
+   for ($i = 1; $i <= mysqli_num_rows($getSiteInfo); $i++) {
+  		
+  $rowSiteNames=mysqli_fetch_array($getSiteInfo);	
+   
+	   $Sites.="'".$rowSiteNames['sitename']."',";
+              
+   } 
+   
+$Sites=rtrim($Sites,',');
+echo $Sites;
+							
+ }
 
 //Get sites registered delegates list for graphs (seperated by commas eg. '203','367','780','352','nnn')
 
-function GraphSiteDelegatesCount() {
+function GraphSiteDelegatesCount($CurrYear) {
+	
+include '../Includes.php';
+	
+	  $getSiteInfo2=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-    include '../Includes.php';
+   for ($j = 1; $j <= mysqli_num_rows($getSiteInfo2); $j++) {
+  		
+  $rowSiteNames2=mysqli_fetch_array($getSiteInfo2);	
+   
+	  
+	   
+	   $getAttendants=mysqli_query($conn,"SELECT * FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite`='".$rowSiteNames2['sitename']."' AND `ticket_paid`='YES'"); $countSite=mysqli_num_rows($getAttendants); 
+	   
+	   $CountSite.=$countSite.",";
+	   
+              
+   } 
+   
+$CountSite=rtrim($CountSite,',');
+echo $CountSite;
+		  
 
-    $getSiteInfo2 = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
-
-    for ($j = 1; $j <= mysqli_num_rows($getSiteInfo2); $j++) {
-
-        $rowSiteNames2 = mysqli_fetch_array($getSiteInfo2);
-
-
-
-        $getAttendants = mysqli_query($conn, "SELECT * FROM `delegate` WHERE `glsyear`='" . $CurrYear . "' AND `glssite`='" . $rowSiteNames2['sitename'] . "' AND `ticket_paid`='YES'");
-        $countSite = mysqli_num_rows($getAttendants);
-
-        $CountSite.=$countSite . ",";
-    }
-
-    $CountSite = rtrim($CountSite, ',');
-    echo $CountSite;
+	
 }
 
-function PieChartGraphSitePerformance() {
 
-    include '../Includes.php';
+function PieChartGraphSitePerformance($CurrYear) {
+	
+	include '../Includes.php';
+	
+	//Fetch Sites List
+	
+	$getSiteInfo=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-    //Fetch Sites List
+   for ($i = 1; $i <= mysqli_num_rows($getSiteInfo); $i++) {
+  		
+   $rowSiteNames=mysqli_fetch_array($getSiteInfo);	
+   
+	   $Sites.="'".$rowSiteNames['sitename']."',";
+              
+       } 
+   
+       $SitesList=rtrim($Sites,',');
+	
 
-    $getSiteInfo = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
+	
+	//Get Total Revenue for all sites
+	$getTotalRevenue=mysqli_query($conn,"SELECT SUM(amount) s FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite` IN (".$SitesList.") AND `ticket_paid`='YES'");
+	$rowTotalRevenue=mysqli_fetch_array($getTotalRevenue);
+	$TotalCollection=$rowTotalRevenue['s'];
+	
 
-    for ($i = 1; $i <= mysqli_num_rows($getSiteInfo); $i++) {
+	  $getSiteInfo3=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
 
-        $rowSiteNames = mysqli_fetch_array($getSiteInfo);
+      for ($k = 1; $k <= mysqli_num_rows($getSiteInfo3); $k++) {
+  		
+      $rowSiteNames3=mysqli_fetch_array($getSiteInfo3);	
+   
+ 
+	   $getTxn=mysqli_query($conn,"SELECT SUM(amount) s FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite`='".$rowSiteNames3['sitename']."' AND `ticket_paid`='YES'"); 
+	   $rowTxn=mysqli_fetch_array($getTxn);
+	   
 
-        $Sites.="'" . $rowSiteNames['sitename'] . "',";
-    }
+	   $Txn=($rowTxn['s']/$TotalCollection)*100;
+	   
+	   $list.= '['."'".$rowSiteNames3['sitename']."',".number_format($Txn,2)."],";
+	   
+   
+              
+   } 
+	
+   
+$list=rtrim($list,',');
+echo $list;
+	  
 
-    $SitesList = rtrim($Sites, ',');
-
-
-
-    //Get Total Revenue for all sites
-    $getTotalRevenue = mysqli_query($conn, "SELECT SUM(amount) s FROM `delegate` WHERE `glsyear`='" . $CurrYear . "' AND `glssite` IN (" . $SitesList . ") AND `ticket_paid`='YES'");
-    $rowTotalRevenue = mysqli_fetch_array($getTotalRevenue);
-    $TotalCollection = $rowTotalRevenue['s'];
-
-
-    $getSiteInfo3 = mysqli_query($conn, "SELECT `sitename` FROM `glssiteinfo`");
-
-    for ($k = 1; $k <= mysqli_num_rows($getSiteInfo3); $k++) {
-
-        $rowSiteNames3 = mysqli_fetch_array($getSiteInfo3);
-
-
-        $getTxn = mysqli_query($conn, "SELECT SUM(amount) s FROM `delegate` WHERE `glsyear`='" . $CurrYear . "' AND `glssite`='" . $rowSiteNames3['sitename'] . "' AND `ticket_paid`='YES'");
-        $rowTxn = mysqli_fetch_array($getTxn);
-
-
-        $Txn = ($rowTxn['s'] / $TotalCollection) * 100;
-
-        $list.= '[' . "'" . $rowSiteNames3['sitename'] . "'," . number_format($Txn, 2) . "],";
-    }
-
-
-    $list = rtrim($list, ',');
-    echo $list;
+	
 }
+
+
 
 ?>
