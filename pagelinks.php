@@ -161,6 +161,31 @@ if ($pageID=='FrameContent_Element') {
 	$iFrameLink="Elements_html.php";
 }
 
+if ($pageID=='FrameContent_RevenueType') {
+	
+	$iFrameLink="RevenueType_html.php";
+}
 
 
+    if ($pageID=='FrameContent_ActualRevenue') {
+	
+	$iFrameLink="ActualRevenue_html.php";
+}
+
+    if ($pageID=='FrameContent_BudgetRevenue') {
+	
+	$iFrameLink="BudgetRevenue_html.php";
+}
+
+
+if ($pageID=='FrameContent_RecordBudgetExpenses') {
+	
+	$iFrameLink="BudgetExpenses_html.php";
+	
+}
+
+if ($pageID=='FrameContent_BudgetExpensesType') {
+	
+	$iFrameLink="BudgetExpensesType_html.php";
+}
 ?>

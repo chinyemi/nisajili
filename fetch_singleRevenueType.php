@@ -6,13 +6,13 @@ require_once('header.php');
 
 <?php
 
-include('functionExpenseType.php');
-if(isset($_POST["exptypeID"]))
+include('functionRevenueType.php');
+if(isset($_POST["revtypeID"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
-		"SELECT * FROM ExpenseType
-		WHERE  exptypeID = '".$_POST["exptypeID"]."' 
+		"SELECT * FROM RevenueType
+		WHERE  revtypeID = '".$_POST["revtypeID"]."' 
 		LIMIT 1"
 	);
 	$statement->execute();
@@ -20,9 +20,9 @@ if(isset($_POST["exptypeID"]))
 	foreach($result as $row)
 	{
 
-	
-		$output["expType"] = $row["expType"];
-		$output["ExpCategory"] = $row["ExpCategory"];
+	        $output["revtypeID"] = $row["revtypeID"];
+		$output["revType"] = $row["revType"];
+		$output["revCategory"] = $row["revCategory"];
 		$output["Description"] = $row["Description"];
 		
 	

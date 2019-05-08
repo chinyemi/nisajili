@@ -6,12 +6,12 @@ require_once('header.php');
 
 <?php
 
-include('functionExpenseType.php');
+include('functionBudgetExpenseType.php');
 if(isset($_POST["exptypeID"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
-		"SELECT * FROM ExpenseType
+		"SELECT * FROM budget_expensetype
 		WHERE  exptypeID = '".$_POST["exptypeID"]."' 
 		LIMIT 1"
 	);

@@ -6,24 +6,26 @@ require_once('header.php');
 
 <?php
 
-include('functionExpenseType.php');
-if(isset($_POST["exptypeID"]))
+include('functionBudgetExpense.php');
+if(isset($_POST["expenseID"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
-		"SELECT * FROM ExpenseType
-		WHERE  exptypeID = '".$_POST["exptypeID"]."' 
+		"SELECT * FROM budget_expenses
+		WHERE  expenseID = '".$_POST["expenseID"]."' 
 		LIMIT 1"
 	);
 	$statement->execute();
 	$result = $statement->fetchAll();
 	foreach($result as $row)
 	{
-
+		
 	
-		$output["expType"] = $row["expType"];
-		$output["ExpCategory"] = $row["ExpCategory"];
+		$output["Type"] = $row["Type"];
+		$output["Amount"] = $row["Amount"];
+		$output["DateRecorded"] = $row["DateRecorded"];
 		$output["Description"] = $row["Description"];
+		$output["Site"] = $row["Site"];
 		
 	
 		

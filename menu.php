@@ -153,8 +153,10 @@ include('pagelinks.php');
                     <ul class="nav child_menu"> 
               
 						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
+                       
+                        <li><a href="PageSelector.php?pageID=FrameContent_ActualRevenue&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
           
+                        
                         
                       
                     </ul>
@@ -180,9 +182,9 @@ include('pagelinks.php');
                     <ul class="nav child_menu"> 
               
 						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
+                       <li><a href="PageSelector.php?pageID=FrameContent_BudgetRevenue&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Register</a></li>
           
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Type</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_RevenueType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Revenue | Type</a></li>
                       
                     </ul>
                   </li>
@@ -194,9 +196,11 @@ include('pagelinks.php');
                     <ul class="nav child_menu"> 
               
 						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RecordExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Register</a></li>
+                          
+                        <li><a href="PageSelector.php?pageID=FrameContent_RecordBudgetExpenses&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Budget Expense | Register</a></li>
           
-                         <li><a href="PageSelector.php?pageID=FrameContent_ExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Expense | Type</a></li>
+                         <li><a href="PageSelector.php?pageID=FrameContent_BudgetExpensesType&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budget Expense | Type</a></li>
+                      
                       
                     </ul>
                   </li>

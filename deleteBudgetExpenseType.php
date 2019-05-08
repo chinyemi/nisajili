@@ -6,14 +6,14 @@ require_once('header.php');
 <?php
 
 
-include("functionExpenseType.php");
+include("functionBudgetExpenseType.php");
 
 if(isset($_POST["exptypeID"]))
 {
 	
 	
 	$statement = $connection->prepare(
-		"DELETE FROM ExpenseType WHERE exptypeID = :exptypeID"
+		"DELETE FROM budget_expensetype WHERE exptypeID = :exptypeID"
 	);
 	$result = $statement->execute(
 		array(
