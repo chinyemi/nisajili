@@ -17,8 +17,8 @@ if(isset($_POST["operation"]))
 		
 		
 		$statement = $connection->prepare("
-			INSERT INTO expenses (Type, Amount, DateRecorded, Description, Site) 
-			VALUES (:Type, :Amount, :DateRecorded, :Description, :Site)
+			INSERT INTO actual_expenses (Type, Amount, DateRecorded, Description, Site, glsyear) 
+			VALUES (:Type, :Amount, :DateRecorded, :Description, :Site, :glsyear)
 		");
 		$result = $statement->execute(
 			array(
@@ -31,6 +31,7 @@ if(isset($_POST["operation"]))
 				':DateRecorded'	=>	$_POST["DateRecorded"],
 			    ':Description'	=>	$_POST["Description"],
 			    ':Site'	=>	$_POST["Site"],
+			    ':glsyear'	=>	$_POST["glsyear"],
 			   
 			
 			)
@@ -46,8 +47,8 @@ if(isset($_POST["operation"]))
 	{
 	
 		$statement = $connection->prepare(
-			"UPDATE expenses 
-			SET Type = :Type, Amount = :Amount, DateRecorded = :DateRecorded, Description = :Description, Site = :Site
+			"UPDATE actual_expenses 
+			SET Type = :Type, Amount = :Amount, DateRecorded = :DateRecorded, Description = :Description, Site = :Site, glsyear = :glsyear
 			WHERE expenseID = :expenseID
 			"
 		);
@@ -59,6 +60,7 @@ if(isset($_POST["operation"]))
 				':DateRecorded'	=>	$_POST["DateRecorded"],
 			    ':Description'	=>	$_POST["Description"],
 			    ':Site'	=>	$_POST["Site"],
+			    ':glsyear'	=>	$_POST["glsyear"],
 
 				':expenseID'			=>	$_POST["expenseID"]
 			)

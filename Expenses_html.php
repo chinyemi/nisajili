@@ -36,7 +36,7 @@ require_once('header.php');
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">Manage | Site Expenses</h1>
+			<h1 align="center">Actual | Site Expenses</h1>
 			
 			<div class="table-responsive">
 				
@@ -56,6 +56,7 @@ require_once('header.php');
                              <th>Date Recorded</th>
                              <th>Description</th>
                              <th>Site</th>
+                             <th>Season</th>
 							<th>Update</th>
 							<th>Delete</th>
 						
@@ -116,6 +117,20 @@ require_once('header.php');
  	               <?php 	} ?>
 					</select>
 					<br />
+					<label>Season</label>
+					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<?php 
+					$getSiteSeason=mysqli_query($conn,"SELECT * FROM `siteseason`");
+		
+					?>
+					<select name="glsyear" id="glsyear" class="form-control" required>
+        			<option selected disabled>--Select Season--</option>
+        			<?php 	while ($rowSiteSeason=mysqli_fetch_array($getSiteSeason)) { ?>
+  					<option value="<?php echo $rowSiteSeason['Year']; ?>"><?php echo $rowSiteSeason['Year']."(". $rowSiteSeason['SeasonStatus'].")"; ?></option>
+  					
+ 	               <?php 	} ?>
+					</select>
+					<br />
 					
 					
 				</div>
@@ -166,6 +181,7 @@ $(document).ready(function(){
 		var DateRecorded = $('#DateRecorded').val();
 		var Description = $('#Description').val();
 		var Site = $('#Site').val();
+		var glsyear = $('#glsyear').val();
 		
 	
 		if(Type != '' && Amount != '')
@@ -209,7 +225,7 @@ $(document).ready(function(){
 				$('#DateRecorded').val(data.DateRecorded);
 				$('#Description').val(data.Description);
 				$('#Site').val(data.Site);
-			
+			    $('#glsyear').val(data.glsyear);
 				$('.modal-title').text("Edit Expense");
 				$('#expenseID').val(expenseID);
 				

@@ -13,7 +13,7 @@ if(isset($_POST["expenseID"]))
 	
 	
 	$statement = $connection->prepare(
-		"DELETE FROM expenses WHERE expenseID = :expenseID"
+		"DELETE FROM actual_expenses WHERE expenseID = :expenseID"
 	);
 	$result = $statement->execute(
 		array(

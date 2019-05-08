@@ -11,7 +11,7 @@ if(isset($_POST["expenseID"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
-		"SELECT * FROM expenses
+		"SELECT * FROM actual_expenses
 		WHERE  expenseID = '".$_POST["expenseID"]."' 
 		LIMIT 1"
 	);
@@ -26,7 +26,7 @@ if(isset($_POST["expenseID"]))
 		$output["DateRecorded"] = $row["DateRecorded"];
 		$output["Description"] = $row["Description"];
 		$output["Site"] = $row["Site"];
-		
+		$output["glsyear"] = $row["glsyear"];
 	
 		
 	}
