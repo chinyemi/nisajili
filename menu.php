@@ -258,6 +258,14 @@ include('pagelinks.php');
 
                         <li><a href="PageSelector.php?pageID=GenerateDelRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Create Views | Delegates</a></li>
                         <li><a href="PageSelector.php?pageID=GenerateCarRpt&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Create Views | Car Parking</a></li>
+                        
+                        <!--                        //added menud-->
+                       <li><a href="PageSelector.php?pageID=GenerateBudgetRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Budget Revenue</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateActualRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Actual Revenue</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateBudgetExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Budget Expenses</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateActualExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Actual Expenses</a></li>
+                        <!--end of added menu-->
+
                       
                       <li><a href="PageSelector.php?pageID=FrameContent_SiteSeason&Id=<?php echo $Id;?>">Season | Management</a></li>
                       <li><a href="User_Management_CRUD.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Users | Management</a></li>

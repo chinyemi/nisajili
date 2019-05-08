@@ -188,4 +188,33 @@ if ($pageID=='FrameContent_BudgetExpensesType') {
 	
 	$iFrameLink="BudgetExpensesType_html.php";
 }
+
+//added content
+
+if ($pageID=='FrameContent_ActualRevenueReport') {
+	
+	$iFrameLink="actualrevenue_proc.php";
+}
+
+
+if ($pageID=='GenerateActualRevenueRpt') {
+	
+	$iFrameLink="generateactualrevenue_proc.php";
+}
+if ($pageID=='GenerateBudgetRevenueRpt') {
+	
+	$iFrameLink="generatebudgetrevenue_proc.php";
+}
+
+if ($pageID=='GenerateBudgetExpenseRpt') {
+	
+	$iFrameLink="generatebudgetexpense_proc.php";
+}
+
+if ($pageID=='GenerateActualExpenseRpt') {
+	
+	$iFrameLink="generateactualexpense_proc.php";
+}
+//end of added content
+
 ?>
