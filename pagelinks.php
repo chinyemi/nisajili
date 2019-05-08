@@ -216,5 +216,21 @@ if ($pageID=='GenerateActualExpenseRpt') {
 	$iFrameLink="generateactualexpense_proc.php";
 }
 //end of added content
+if ($pageID=='FrameContent_ActualExpenseReport') {
+	
+	$iFrameLink="actualexpense_proc.php";
+}
+
+if ($pageID=='FrameContent_BudgetRevenueReport') {
+	
+	$iFrameLink="budgetrevenue_proc.php";
+}
+
+if ($pageID=='FrameContent_BudgetExpense') {
+	
+	$iFrameLink="budgetexpense_proc.php";
+}
+
+
 
 ?>

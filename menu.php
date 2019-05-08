@@ -85,13 +85,12 @@ include('pagelinks.php');
 						  
                         <li><a href="PageSelector.php?pageID=FrameContent_RegistrantsReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Registrants | Reports</a></li>
           
-                        <li><a href="System_Rates.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Revenue | Reports</a></li>
-                        
-                          <li><a href="PageSelector.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Expenses | Reports</a></li>
-                          
-                          <li><a href="System_Rates.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Revenue | Reports</a></li>
-                        
-                          <li><a href="PageSelector.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Expenses | Reports</a></li>
+                      
+                        <li><a href="PageSelector.php?pageID=FrameContent_ActualRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Revenue | Reports</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_ActualExpenseReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Expenses | Reports</a></li>
+                          <li><a href="PageSelector.php?pageID=FrameContent_BudgetRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Revenue | Reports</a></li>
+                           <li><a href="PageSelector.php?pageID=FrameContent_BudgetExpense&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Expenses | Reports</a></li>
+
                         
                         <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Checked-in Vehicle | Reports</a></li>
                         
