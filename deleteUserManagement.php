@@ -14,7 +14,7 @@ if(isset($_POST["UserID"]))
 	$Image= get_image_name($_POST["UserID"]);
 	if($Image != '')
 	{
-		unlink("upload/" . $Image);
+		unlink("userimages/" . $Image);
 	}
 	
 	$statement = $connection->prepare(

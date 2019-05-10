@@ -85,7 +85,7 @@ require_once('header.php');
 					<input type="text" name="UserName" id="UserName" class="form-control" />
 					<br />
 					<label>Password</label>
-					<input type="password" name="Password" id="Password" class="form-control" />
+					<input type="password" name="Password" id="Password" class="form-control" title="Kindly update password every time you update anything on user information"/>
 					<br />
 					<label>Fullname</label>
 					<input type="text" name="Fullname" id="Fullname" class="form-control" />
@@ -271,7 +271,7 @@ $(document).ready(function(){
 				$('#UserAccountSuspended').val(data.UserAccountSuspended);
 				$('.modal-title').text("Edit User");
 				$('#UserID').val(UserID);
-				$('#user_uploaded_image').html(data.picture1);
+				$('#user_uploaded_image').html(data.Image);
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}

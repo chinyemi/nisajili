@@ -42,7 +42,7 @@ foreach($result as $row)
 	$Image = '';
 	if($row["Image"] != '')
 	{
-		$Image = '<img src="upload/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" />';
+		$Image = '<img src="userimages/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" />';
 	}
 	else
 	{

@@ -31,7 +31,7 @@ if(isset($_POST["UserID"]))
 		$output["UserAccountSuspended"] = $row["UserAccountSuspended"];
 		if($row["Image"] != '')
 		{
-			$output['Image'] = '<img src="upload/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["Image"].'" />';
+			$output['Image'] = '<img src="userimages/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["Image"].'" />';
 		}
 		else
 		{

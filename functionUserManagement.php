@@ -9,7 +9,7 @@ function upload_image()
 		
 		//Maintain Same Image nmae
 		$new_name = $extension[0] . '.' . $extension[1];
-		$destination = './upload/' . $new_name;
+		$destination = './userimages/' . $new_name;
 		move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
 		return $new_name;
 	}
