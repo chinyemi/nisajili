@@ -267,7 +267,7 @@ include('pagelinks.php');
 
                       
                       <li><a href="PageSelector.php?pageID=FrameContent_SiteSeason&Id=<?php echo $Id;?>">Season | Management</a></li>
-                      <li><a href="User_Management_CRUD.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Users | Management</a></li>
+                     <li><a href="PageSelector.php?pageID=FrameContent_UserManagement&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> User | Management</a></li>
       
                       <li><a href="paymentgateway.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Payments | Gateway</a></li>
                       

@@ -231,6 +231,11 @@ if ($pageID=='FrameContent_BudgetExpense') {
 	$iFrameLink="budgetexpense_proc.php";
 }
 
+if ($pageID=='FrameContent_UserManagement') {
+	
+	$iFrameLink="UserManagement_html.php";
+}	
+	
 
 
 ?>
