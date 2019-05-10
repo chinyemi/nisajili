@@ -11,6 +11,11 @@ include("functionUserManagement.php");
 if(isset($_POST["UserID"]))
 {
 	
+	$Image= get_image_name($_POST["UserID"]);
+	if($Image != '')
+	{
+		unlink("upload/" . $Image);
+	}
 	
 	$statement = $connection->prepare(
 		"DELETE FROM cmembership WHERE UserID = :UserID"

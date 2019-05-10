@@ -239,45 +239,99 @@ include('pagelinks.php');
                <div class="menu_section">
                 <h3>System Administration</h3>
                 <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-cog"></i> System Management <span class="fa fa-chevron-down"></span></a>
+                 <li><a><i class="glyphicon glyphicon-certificate"></i> Manage | Certificate <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+                   
+                      <li><a href="Generate_Certificates.php?pageID=FrameContent_Gen_Cert&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Certificate | Process</a></li>
+  
+                       <li><a href="Process_Payment_CRUD.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Certificate | Payment</a></li>
+                  
+                      
+                      <?php } ?>
+                      
+                    </ul>
+                  </li>
+                  
+                  <li><a><i class="glyphicon glyphicon-map-marker"></i> Site | Event <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+          
+                      <li><a href="PageSelector.php?pageID=SysInfo&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Event | Details</a></li>
+          
+                        <li><a href="PageSelector.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Registration | Fees</a></li>
+                        
+                        <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Event | Dates</a></li>
+           
+                      
+                      <?php } ?>
+                      
+                    </ul>
+                  </li>
+                 
+                    <li><a><i class="glyphicon glyphicon-user"></i> System | Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
                      <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
                       
                       
-                      <li><a href="Generate_Certificates.php?pageID=FrameContent_Gen_Cert&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Certificate | Process</a></li>
-  
-                       <li><a href="Process_Payment_CRUD.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Certificate | Payment</a></li>
+                     <li><a href="PageSelector.php?pageID=FrameContent_UserManagement&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> User | Management</a></li>
+                     <li><a href="#"> Designation | Management</a></li>
+                     <li><a href="#" title="This feature is not available at the moment"> Roles | Management</a></li>
                       
-                      <li><a href="PageSelector.php?pageID=SysInfo&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Site Details | Management</a></li>
-          
-                        <li><a href="PageSelector.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Site Rates | Management</a></li>
-                        
-                        <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Site Dates | Management</a></li>
-                        
-
-                        <li><a href="PageSelector.php?pageID=GenerateDelRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Create Views | Delegates</a></li>
-                        <li><a href="PageSelector.php?pageID=GenerateCarRpt&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Create Views | Car Parking</a></li>
-                        
-                        <!--                        //added menud-->
-                       <li><a href="PageSelector.php?pageID=GenerateBudgetRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Budget Revenue</a></li>
-                        <li><a href="PageSelector.php?pageID=GenerateActualRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Actual Revenue</a></li>
-                        <li><a href="PageSelector.php?pageID=GenerateBudgetExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Budget Expenses</a></li>
-                        <li><a href="PageSelector.php?pageID=GenerateActualExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Create Views | Actual Expenses</a></li>
-                        <!--end of added menu-->
-
+                      <?php } ?>
+                      
+                    </ul>
+                  </li>  
+                  <li><a><i class="glyphicon glyphicon-eye-open"></i> Create | Views <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+                     <li><a href="PageSelector.php?pageID=GenerateDelRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Views | Delegates</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateCarRpt&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Views | Car Parking</a></li>
+                     
+                       <li><a href="PageSelector.php?pageID=GenerateBudgetRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Budget Revenue</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateActualRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Actual Revenue</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateBudgetExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Budget Expenses</a></li>
+                        <li><a href="PageSelector.php?pageID=GenerateActualExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Actual Expenses</a></li>
+                     
+                      
+                      <?php } ?>
+                    
+                    </ul>
+                  </li>   
+                  
+               
+                  
+                  <li><a><i class="glyphicon glyphicon-calendar"></i> Set up | Season  <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+                   
                       
                       <li><a href="PageSelector.php?pageID=FrameContent_SiteSeason&Id=<?php echo $Id;?>">Season | Management</a></li>
-                     <li><a href="PageSelector.php?pageID=FrameContent_UserManagement&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> User | Management</a></li>
+                    
+                      <?php } ?>
+                      
+                    </ul>
+                  </li>   
+                  
+                <li><a><i class="glyphicon glyphicon-credit-card"></i> Online | Payment <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+                      
+                 
       
                       <li><a href="paymentgateway.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Payments | Gateway</a></li>
                       
                       <?php } ?>
+                      
+                    </ul>
+                  </li>    
+                  
+                 <li><a><i class="glyphicon glyphicon-wrench"></i> System | Support <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu"> 
+                     
                       <li><a href="https://www.nisajili.com/support/" target="_blank">Online Support</a></li>
                     </ul>
-                  </li>
-                  
-                 
-                                  
+                  </li>                                                                                                                                                                                 
                 
                 </ul>
               </div>

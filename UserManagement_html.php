@@ -1,3 +1,4 @@
+
 <?php 
 
 require_once('header.php');
@@ -35,34 +36,32 @@ require_once('header.php');
 	</head>
 	<body>
 		<div class="container box">
-
-      <h1 align="center">User | Management</h1>
+			<h1 align="center">Manage | Users</h1>
 			
 			<div class="table-responsive">
 				
 				<div align="left">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add System User</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add User</button>
 				</div>
 				<br/>
 				<table id="user_data" class="table table-bordered table-striped">
-				<thead>
-		<tr>
-                 <th>UserName</th>
-                 <th>Password</th>
-                 <th>Fullname</th>
-                 <th>Gender</th>
-                  <th>DoB</th>
-                 <th>Email</th>
-                <th>MobileNo</th>
-                <th>Designation</th>
-                <th>Userlevel</th>
-                <th>dateregistered</th>
-                <th>UserAccountSuspended</th>
-                
-                 <th>Update</th>
-				<th>Delete</th>
-             
-                 </tr>
+					<thead>
+						<tr>
+							<th>Image</th>
+            				 <th>UserName</th>
+            				 <th>Password</th>
+                             <th>Fullname</th>
+                             <th>Gender</th>
+                             <th>Email</th>
+                             <th>MobileNo</th>
+                             <th>Designation</th>
+                             <th>Userlevel</th>
+                             <th>dateregistered</th>
+                            <th>Suspended</th>
+							<th>Update</th>
+							<th>Delete</th>
+		
+						</tr>
 					</thead>
 				</table>
 				
@@ -71,7 +70,7 @@ require_once('header.php');
 	</body>
 </html>
 
-    <div id="userModal" class="modal fade">
+<div id="userModal" class="modal fade">
 	<div class="modal-dialog">
 		<form method="post" id="user_form" enctype="multipart/form-data">
 			<div class="modal-content">
@@ -79,84 +78,90 @@ require_once('header.php');
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Add User</h4>
 				</div>
-       
-       <div class="modal-body">
+				<div class="modal-body">
+
+
 					<label>UserName</label>
 					<input type="text" name="UserName" id="UserName" class="form-control" />
 					<br />
-                   
-                    <label>Password</label>
-				     <input type="password" name="Password" id="Password" class="form-control" required />
+					<label>Password</label>
+					<input type="password" name="Password" id="Password" class="form-control" />
 					<br />
-                   
-                    <label>Fullname</label>
+					<label>Fullname</label>
 					<input type="text" name="Fullname" id="Fullname" class="form-control" />
 					<br />
-                   
-                    <label>Gender</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<label>Gender</label>
+				
 					<select name="Gender" id="Gender" class="form-control" required>
         			<option selected disabled>--Select Gender--</option>
   					<option value="Male">Male</option>
   					<option value="Female">Female</option>
+ 	               
 					</select>
 					<br />
-                     
-                    <label>DoB</label>
-				    <input type="date" name="DoB" id="DoB" class="form-control" required max="2005-01-01" min="1930-01-01"/>
-					<br />
-         
-                    <label>Email</label>
+					
+					<label>Email</label>
 					<input type="text" name="Email" id="Email" class="form-control" />
 					<br />
-         
-                    <label>MobileNo</label>
+					<label>MobileNo</label>
 					<input type="text" name="MobileNo" id="MobileNo" class="form-control" />
 					<br />
-         
-                    <label>Designation</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<label>Designation</label>
 					<select name="Designation" id="Designation" class="form-control" required>
+       			    <?php 
+						
+					$getDesignation=mysqli_query($conn,"SELECT * FROM Designations");	
+						
+						?>
         			<option selected disabled>--Select Designation--</option>
-  					<option value="Volunteer">Volunteer</option>
-  					<option value="Duty Officer">Duty Officer</option>
-  					<option value="Finance Officer">Finance Officer</option>
-  					<option value="IT Officer">IT Officer</option>
-  					<option value="Technical Support">Technical Support</option>
-  					<option value="Office Administrator">Office Administrator</option>
-  					<option value="Marketing Officer">Marketing Officer</option>
-  					<option value="Producer">Producer</option>
-  					<option value="Supporting Manager">Supporting Manager</option>
-  					<option value="Event Manager">Event Manager</option>
-  					<option value="Country Director">Country Director</option>
+        			<?php   
+						while ($rowDesignation=mysqli_fetch_array($getDesignation)) {
+						?>
+  					<option value="<?php echo $rowDesignation['DesignationName'];?>" title="<?php echo $rowDesignation['Description'];?>"><?php echo $rowDesignation['DesignationName'];?></option>
+  					<?php 
+						}
+						?>
 					</select>
 					<br />
-                    
-                    <label>Userlevel</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<label>Userlevel</label>
+					<!--input type="text" name="profile_row" id="profile_row" class="form-control" /-->
 					<select name="Userlevel" id="Userlevel" class="form-control" required>
-        			<option selected disabled>--Select Userlevel--</option>
-  					<option value="Normal">Normal</option>
-  					<option value="Manager">Manager</option>
-  					<option value="Administrator">Administrator</option>
+        			   <?php 
+						
+					$getDesignation=mysqli_query($conn,"SELECT * FROM userroles");	
+						
+						?>
+        			<option selected disabled>--Select Role Name--</option>
+        			<?php   
+						while ($rowUserlevel=mysqli_fetch_array($getDesignation)) {
+						?>
+  					<option value="<?php echo $rowUserlevel['RoleName'];?>" title="<?php echo $rowUserlevel['Description'];?>"><?php echo $rowUserlevel['RoleName'];?></option>
+  					<?php 
+						}
+						?>
 					</select>
 					<br />
-                    
-                    <label>dateregistered</label>
-					<input type="date" name="dateregistered" id="dateregistered" class="form-control" min="2017-01-01" />
+		
+
+					<label>Date</label>
+					<input type="date" name="dateregistered" id="dateregistered" class="form-control" />
+				
 					<br />
-                    
-                    <label>UserAccountSuspended</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
+					<label>Suspended</label>
+				
 					<select name="UserAccountSuspended" id="UserAccountSuspended" class="form-control" required>
-        			<option selected disabled>--Select Action--</option>
-  					<option value="NO">NO</option>
+        			<option selected disabled>--YES/NO--</option>
   					<option value="YES">YES</option>
+  					<option value="NO">NO</option>
+ 	               
 					</select>
 					<br />
-                
-                    </div>
-				    <div class="modal-footer">
+					
+					<label>Select User Image</label>
+					<input type="file" name="Image" id="Image" />
+					<span id="user_uploaded_image"></span>
+				</div>
+				<div class="modal-footer">
 					<input type="hidden" name="UserID" id="UserID" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
@@ -167,23 +172,22 @@ require_once('header.php');
 	</div>
 </div>
 
-   
-   
-    <script type="text/javascript" language="javascript" >
-    $(document).ready(function(){
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
-		$('.modal-title').text("Add System User");
+		$('.modal-title').text("Add User");
 		$('#action').val("Add");
 		$('#operation').val("Add");
-		
+		$('#user_uploaded_image').html('');
 	});
+	
 	var dataTable = $('#user_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"fetchUserManagement.php?Id=<?php echo $Id;?>",
+			url:"fetchUserManagement.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>",
 			type:"POST"
 		},
 		"columnDefs":[
@@ -194,8 +198,6 @@ require_once('header.php');
 		],
 
 	});
-	
-		
 
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
@@ -204,7 +206,6 @@ require_once('header.php');
 		var Password = $('#Password').val();
 		var Fullname = $('#Fullname').val();
 		var Gender = $('#Gender').val();
-		var DoB = $('#DoB').val();
 		var Email = $('#Email').val();
 		var MobileNo = $('#MobileNo').val();
 		var Designation = $('#Designation').val();
@@ -212,11 +213,21 @@ require_once('header.php');
 		var dateregistered = $('#dateregistered').val();
 		var UserAccountSuspended = $('#UserAccountSuspended').val();
 		
-
+		var extension = $('#Image').val().split('.').pop().toLowerCase();
+		if(extension != '')
+		{
+			if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+			{
+				alert("Invalid Image File");
+				$('#Image').val('');
+				return false;
+			}
+		}	
+		
 		if(UserName != '' && Password != '')
 		{
 			$.ajax({
-				url:"insertUserManagement.php?Id=<?php echo $Id;?>",
+				url:"insertUserManagement.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -232,16 +243,15 @@ require_once('header.php');
 		}
 		else
 		{
-			alert("Both Fields are Required");
+			alert("Fields Required");
 		}
 	});
 	
 
-
 	$(document).on('click', '.update', function(){
 		var UserID = $(this).attr("UserID");
 		$.ajax({
-			url:"fetch_singleUserManagement.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleUserManagement.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>",
 			method:"POST",
 			data:{UserID:UserID},
 			dataType:"json",
@@ -253,18 +263,15 @@ require_once('header.php');
 				$('#Password').val(data.Password);
 				$('#Fullname').val(data.Fullname);
 				$('#Gender').val(data.Gender);
-				$('#DoB').val(data.DoB);
 				$('#Email').val(data.Email);
 				$('#MobileNo').val(data.MobileNo);
 				$('#Designation').val(data.Designation);
 				$('#Userlevel').val(data.Userlevel);
 				$('#dateregistered').val(data.dateregistered);
 				$('#UserAccountSuspended').val(data.UserAccountSuspended);
-				
-			
 				$('.modal-title').text("Edit User");
 				$('#UserID').val(UserID);
-				
+				$('#user_uploaded_image').html(data.picture1);
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}
@@ -276,7 +283,7 @@ require_once('header.php');
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteUserManagement.php?Id=<?php echo $Id;?>",
+				url:"deleteUserManagement.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>",
 				method:"POST",
 				data:{UserID:UserID},
 				success:function(data)

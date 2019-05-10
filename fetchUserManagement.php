@@ -6,18 +6,18 @@ require_once('header.php');
 <?php
 
 
-
 include('functionUserManagement.php');
 $query = '';
 $output = array();
-$query .= "SELECT `UserID`,`UserName`,`Password`,`Gender`, 'DoB' ,`Email`,`MobileNo`,`Designation`,`Userlevel`,`dateregistered`,`UserAccountSuspended` FROM cmembership ";
-
+$query .= "SELECT   `UserID`,`UserName`,`Password`,`Fullname`,`Gender`,`Email`,`MobileNo`,`Designation`,`Userlevel`,`dateregistered`,`UserAccountSuspended`,`Image` FROM cmembership ";
 if(isset($_POST["search"]["value"]))
 {
-	$query .= 'WHERE Type LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR dateregistered LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR UserName LIKE "%'.$_POST["search"]["value"].'%" ';
-
+	$query .= 'WHERE UserName LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR Fullname LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR Email LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR MobileNo LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR Designation LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR Userlevel LIKE "%'.$_POST["search"]["value"].'%" ';
 
 }
 if(isset($_POST["order"]))
@@ -39,19 +39,30 @@ $data = array();
 $filtered_rows = $statement->rowCount();
 foreach($result as $row)
 {
-	
-	$sub_array = array();	
+	$Image = '';
+	if($row["Image"] != '')
+	{
+		$Image = '<img src="upload/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" />';
+	}
+	else
+	{
+		$Image = '';
+	}
+	$sub_array = array();
+	$sub_array[] = $Image;
 	
 	$sub_array[] = $row["UserName"];
 	$sub_array[] = $row["Password"];
+	$sub_array[] = $row["Fullname"];
 	$sub_array[] = $row["Gender"];
-    $sub_array[] = $row["DoB"];
-    $sub_array[] = $row["Email"];
+	$sub_array[] = $row["Email"];
 	$sub_array[] = $row["MobileNo"];
 	$sub_array[] = $row["Designation"];
 	$sub_array[] = $row["Userlevel"];
 	$sub_array[] = $row["dateregistered"];
-	$sub_array[] = $row["UserAccountSuspendedail"];
+	$sub_array[] = $row["UserAccountSuspended"];
+	
+
 
 	$sub_array[] = '<button type="button" name="update" UserID="'.$row["UserID"].'" class="btn btn-warning btn-xs update">Update</button>';
 	$sub_array[] = '<button type="button" name="delete" UserID="'.$row["UserID"].'" class="btn btn-danger btn-xs delete">Delete</button>';

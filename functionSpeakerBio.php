@@ -2,29 +2,29 @@
 
 function upload_image()
 {
-	if(isset($_FILES["Image"]))
+	if(isset($_FILES["picture1"]))
 	{
-		$extension = explode('.', $_FILES['Image']['name']);
+		$extension = explode('.', $_FILES['picture1']['name']);
 		//$new_name = rand() . '.' . $extension[1];
 		
 		//Maintain Same Image nmae
 		$new_name = $extension[0] . '.' . $extension[1];
 		$destination = './upload/' . $new_name;
-		move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
+		move_uploaded_file($_FILES['picture1']['tmp_name'], $destination);
 		return $new_name;
 	}
 }
 
-function get_image_name($UserID)
+function get_image_name($InfoID)
 {
 	//include('db.php');
 	include '../Includes.php';
-	$statement = $connection->prepare("SELECT Image FROM cmembership WHERE UserID = '$UserID'");
+	$statement = $connection->prepare("SELECT picture1 FROM webspeakers WHERE InfoID = '$InfoID'");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	foreach($result as $row)
 	{
-		return $row["Image"];
+		return $row["picture1"];
 	}
 }
 
@@ -32,7 +32,7 @@ function get_total_all_records()
 {
 	//include('db.php');
 	include '../Includes.php';
-	$statement = $connection->prepare("SELECT * FROM cmembership");
+	$statement = $connection->prepare("SELECT * FROM webspeakers");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	return $statement->rowCount();

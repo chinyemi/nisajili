@@ -19,24 +19,26 @@ if(isset($_POST["UserID"]))
 	$result = $statement->fetchAll();
 	foreach($result as $row)
 	{
-
-		
-	
 		$output["UserName"] = $row["UserName"];
 		$output["Password"] = $row["Password"];
+		$output["Fullname"] = $row["Fullname"];
 		$output["Gender"] = $row["Gender"];
-		$output["DoB"] = $row["DoB"];
 		$output["Email"] = $row["Email"];
 		$output["MobileNo"] = $row["MobileNo"];
 		$output["Designation"] = $row["Designation"];
 		$output["Userlevel"] = $row["Userlevel"];
 		$output["dateregistered"] = $row["dateregistered"];
 		$output["UserAccountSuspended"] = $row["UserAccountSuspended"];
-		
-	
+		if($row["Image"] != '')
+		{
+			$output['Image'] = '<img src="upload/'.$row["Image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["Image"].'" />';
+		}
+		else
+		{
+			$output['Image'] = '<input type="hidden" name="hidden_user_image" value="" />';
+		}
 		
 	}
 	echo json_encode($output);
 }
 ?>
->

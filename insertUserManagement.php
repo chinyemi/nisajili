@@ -13,11 +13,16 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Add")
 	{
 		
-
+		$Image = '';
+		if($_FILES["Image"]["name"] != '')
+		{
+			$Image = upload_image();
+		}
+		
 		
 		$statement = $connection->prepare("
-			INSERT INTO cmembership (UserName, Password, Gender, DoB, Email, MobileNo, Designation, Userlevel, dateregistered, UserAccountSuspended) 
-			VALUES (:UserName, :Password, :Gender, :DoB, :Email, :MobileNo, :Designation, :Userlevel, :dateregistered, :UserAccountSuspended)
+			INSERT INTO cmembership (UserName, Password, Fullname, Gender, Email, MobileNo, Designation, Userlevel, dateregistered, UserAccountSuspended, Image) 
+			VALUES (:UserName, :Password, :Fullname, :Gender , :Email, :MobileNo, :Designation, :Userlevel, :dateregistered, :UserAccountSuspended, :Image)
 		");
 		$result = $statement->execute(
 			array(
@@ -26,32 +31,41 @@ if(isset($_POST["operation"]))
 		
 				
 				':UserName'	=>	$_POST["UserName"],
-			    ':Password'	=>	$_POST["Password"],
-				':Gender'	=>	$_POST["Gender"],
-			    ':DoB'	=>	$_POST["DoB"],
+			    ':Password'	=>	md5($_POST["Password"]),
+				':Fullname'	=>	$_POST["Fullname"],
+			    ':Gender'	=>	$_POST["Gender"],
 			    ':Email'	=>	$_POST["Email"],
-			    ':MobileNo'	=>	$_POST["MobileNo"],
+				':MobileNo'	=>	$_POST["MobileNo"],
 			    ':Designation'	=>	$_POST["Designation"],
-			    ':Userlevel'	=>	$_POST["Userlevel"],
+				':Userlevel'	=>	$_POST["Userlevel"],
 			    ':dateregistered'	=>	$_POST["dateregistered"],
-			    ':UserAccountSuspended'	=>	$_POST["UserAccountSuspended"],
-			   
-			
+				':UserAccountSuspended'	=>	$_POST["UserAccountSuspended"],
+				
+				':Image'		=>	$Image
 			)
 		);
 		if(!empty($result))
 		{
 			echo 'Data Inserted';
-			
-			
 		}
 	}
 	if($_POST["operation"] == "Edit")
 	{
 	
+		$Image = '';
+		if($_FILES["Image"]["name"] != '')
+		{
+			$Image = upload_image();
+		}
+		else
+		{
+			$Image = $_POST["hidden_user_image"];
+		}
+	
+
 		$statement = $connection->prepare(
 			"UPDATE cmembership 
-			SET UserName = :UserName, Password = :Password, Gender = :Gender, DoB = :DoB, Email = :Email, MobileNo = :MobileNo, Designation = :Designation, Userlevel = :Userlevel, dateregistered = :dateregistered, UserAccountSuspended = :UserAccountSuspended
+			SET UserName = :UserName, Password = :Password, Fullname = :Fullname, Gender = :Gender, Email = :Email, MobileNo = :MobileNo, Designation = :Designation, Userlevel = :Userlevel, dateregistered = :dateregistered, UserAccountSuspended = :UserAccountSuspended, Image  = :Image   
 			WHERE UserID = :UserID
 			"
 		);
@@ -59,22 +73,24 @@ if(isset($_POST["operation"]))
 			array(
 				
 				':UserName'	=>	$_POST["UserName"],
-			    ':Password'	=>	$_POST["Password"],
-				':Gender'	=>	$_POST["Gender"],
-			    ':DoB'	=>	$_POST["DoB"],
+			    ':Password'	=>	md5($_POST["Password"]),
+				':Fullname'	=>	$_POST["Fullname"],
+			    ':Gender'	=>	$_POST["Gender"],
 			    ':Email'	=>	$_POST["Email"],
 			    ':MobileNo'	=>	$_POST["MobileNo"],
-			    ':Designation'	=>	$_POST["Designation"],
+				':Designation'	=>	$_POST["Designation"],
 			    ':Userlevel'	=>	$_POST["Userlevel"],
+				':dateregistered'	=>	$_POST["dateregistered"],
 			    ':UserAccountSuspended'	=>	$_POST["UserAccountSuspended"],
-
+			
+				
+				':Image'		=>	$Image,
 				':UserID'			=>	$_POST["UserID"]
 			)
 		);
 		if(!empty($result))
 		{
 			echo 'Data Updated';
-			
 			
 			
 		}
