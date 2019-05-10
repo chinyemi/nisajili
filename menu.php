@@ -276,7 +276,7 @@ include('pagelinks.php');
                       
                      <li><a href="PageSelector.php?pageID=FrameContent_UserManagement&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> User | Management</a></li>
                      <li><a href="#"> Designation | Management</a></li>
-                     <li><a href="#" title="This feature is not available at the moment"> Roles | Management</a></li>
+                     
                       
                       <?php } ?>
                       
