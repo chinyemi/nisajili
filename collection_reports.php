@@ -28,12 +28,12 @@ $rowSiteInfo=mysqli_fetch_array($getSiteInfo);
 
 if ($CurrYear==$Mwaka) {
 	
-$Event = "Site Actual Revenue (without registration fees) for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on ".$rowSiteInfo['eventtype'];
+$Event = "Site Colection for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on ".$rowSiteInfo['eventtype'];
 	
 	
 } else {
 	
-$Event = "Site Actual Revenue (without registration fees) for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on previous year";
+$Event = "Site Colection for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on previous year";
 	
 	
 }
@@ -56,7 +56,7 @@ $(document).ready(function() {
 $('#example').dataTable( {
  "aProcessing": true,
  "aServerSide": true,
-"ajax": "actualrevenue_reports_proc.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>&ReportID=<?php echo $ReportID; ?>",
+"ajax": "collection_reports_proc.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>&ReportID=<?php echo $ReportID; ?>",
 } );
 } );
 
@@ -69,14 +69,17 @@ $('#example').dataTable( {
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
-<th>revenueID</th>
-<th>Type</th>
-<th>Amount</th>
-<th>DateRecorded</th>
-<th>Description</th>
-<th>Site</th>
-<th>glsyear</th>
 
+<th>delegateID</th>
+<th>fullname</th>
+<th>amount</th>
+<th>ticket_paid</th>
+<th>payment_mode</th>
+<th>payment_ref_no</th>
+<th>payment_status</th>
+<th>payment_method</th>
+<th>payment_date</th>
+<th>pesapal_tranx_track_id</th>
 
 </tr>
 </thead>

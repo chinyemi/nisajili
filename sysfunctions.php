@@ -35,6 +35,38 @@ $createViewsDelagate=mysqli_query($conn,$sqlDelegate);
 	
 }
 
+function CreateDBVeiwsCollectionRpt($CurrYear) {
+	
+include '../Includes.php';	
+	
+	$getSiteInfoCollection=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");	
+
+   for ($i = 1; $i <= mysqli_num_rows($getSiteInfoCollection); $i++) {
+  		
+  $rowSiteNamesCollection=mysqli_fetch_array($getSiteInfoCollection);	
+   
+	   
+$viewnameCollection='vw_collection_'.$CurrYear.'_'.$rowSiteNamesCollection['sitename'];
+	   
+	   
+
+$sqlCollection="CREATE OR REPLACE
+  
+    VIEW ".DB_DATABASE.".".$viewnameCollection." 
+    AS
+(SELECT * FROM `delegate` WHERE `glsyear`='".$CurrYear."' AND `glssite`='".$rowSiteNamesCollection['sitename']."' AND `ticket_paid`='YES' );";
+	   
+  
+
+$createViewsCollection=mysqli_query($conn,$sqlCollection);
+	   
+	   
+              
+   } 
+
+	
+}
+
 
 //Create Reports Views for Site Car Parking
 

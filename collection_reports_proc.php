@@ -11,10 +11,10 @@ $ReportID=$_GET['ReportID'];
 $CurrYear=$_GET['Year'];
 
 
-    $aColumns = array('revenueID','Type','Amount','DateRecorded','Description','Site','glsyear');
+    $aColumns = array('delegateID','fullname','amount','ticket_paid','payment_mode','payment_ref_no','payment_status','payment_method','payment_date','pesapal_tranx_track_id');
      
     
-    $sIndexColumn = "revenueID";
+    $sIndexColumn = "delegateID";
      
  
 
@@ -26,7 +26,7 @@ $CurrYear=$_GET['Year'];
   $rowSiteInfo=mysqli_fetch_array($getSiteInfo);	
                     
     if ($ReportID==$rowSiteInfo['sitename']."_".$CurrYear) {
-    $sTable = "vw_actualrevenue_".$CurrYear."_".$rowSiteInfo['sitename'];
+    $sTable = "vw_collection_".$CurrYear."_".$rowSiteInfo['sitename'];
    } 
 
 	   

@@ -117,7 +117,7 @@ $(document).ready(function(){
 		},
 		"columnDefs":[
 			{
-				"targets":[0, 3, 4],
+				"targets":[0, 2, 3],
 				"orderable":false,
 			},
 		],
@@ -128,15 +128,15 @@ $(document).ready(function(){
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var Year = $('#Year').val();
-		var SeasonStatus = $('#SeasonStatus').val();
+		var DesignationName = $('#DesignationName').val();
 		var Description = $('#Description').val();
 		
+		
 	
-		if(Year != '' && SeasonStatus != '')
+		if(DesignationName != '' && Description != '')
 		{
 			$.ajax({
-				url:"insertSiteSeason.php?Id=<?php echo $Id;?>",
+				url:"insertDesignation.php?Id=<?php echo $Id;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -152,28 +152,28 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert("Both Fields are Required");
+			alert("Fields are Required");
 		}
 	});
 	
 
 	$(document).on('click', '.update', function(){
-		var seasonID = $(this).attr("seasonID");
+		var designationID = $(this).attr("designationID");
 		$.ajax({
-			url:"fetch_singleSiteSeason.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleDesignation.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{seasonID:seasonID},
+			data:{designationID:designationID},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#Year').val(data.Year);
-				$('#SeasonStatus').val(data.SeasonStatus);
+				$('#DesignationName').val(data.DesignationName);
 				$('#Description').val(data.Description);
+				
 			
 				$('.modal-title').text("Edit Seaon");
-				$('#seasonID').val(seasonID);
+				$('#designationID').val(designationID);
 				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
@@ -182,13 +182,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var seasonID = $(this).attr("seasonID");
+		var designationID = $(this).attr("designationID");
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteSiteSeason.php?Id=<?php echo $Id;?>",
+				url:"deleteDesignation.php?Id=<?php echo $Id;?>",
 				method:"POST",
-				data:{seasonID:seasonID},
+				data:{designationID:designationID},
 				success:function(data)
 				{
 					alert(data);

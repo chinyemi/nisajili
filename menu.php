@@ -78,23 +78,21 @@ include('pagelinks.php');
                   <div class="menu_section">
                 <h3>Reports</h3>
                 <ul class="nav side-menu">
-                 <li><a><i class="glyphicon glyphicon-th"></i>System Reports<span class="fa fa-chevron-down"></span></a>
+                 <li><a><i class="glyphicon glyphicon-th"></i>Dynamic Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
                     
                      
 						  
-                        <li><a href="PageSelector.php?pageID=FrameContent_RegistrantsReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Registrants | Reports</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_RegistrantsReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Registrants | Delegate</a></li>
           
-                      
-                        <li><a href="PageSelector.php?pageID=FrameContent_ActualRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Revenue | Reports</a></li>
-                        <li><a href="PageSelector.php?pageID=FrameContent_ActualExpenseReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual Expenses | Reports</a></li>
-                          <li><a href="PageSelector.php?pageID=FrameContent_BudgetRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Revenue | Reports</a></li>
-                           <li><a href="PageSelector.php?pageID=FrameContent_BudgetExpense&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted Expenses | Reports</a></li>
-
+                       <li><a href="PageSelector.php?pageID=FrameContent_CollectionReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Collections | Summary</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_ActualRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual | Revenue</a></li>
+                        <li><a href="#">Actual | Expenses</a></li>
+                        <li><a href="#">Budgeted | Revenue</a></li>
+                        <li><a href="#">Budgeted | Expenses</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_CheckedVehicleReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Checked-in | Vehicle</a></li>
                         
-                        <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Checked-in Vehicle | Reports</a></li>
-                        
-                        <li><a href="PageSelector.php?pageID=sentMsgs&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Message Sents | Reports</a></li>
+                        <li><a href="PageSelector.php?pageID=sentMsgs&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Message | Sents</a></li>
                     
                   
                       
@@ -275,7 +273,7 @@ include('pagelinks.php');
                       
                       
                      <li><a href="PageSelector.php?pageID=FrameContent_UserManagement&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> User | Management</a></li>
-                     <li><a href="#"> Designation | Management</a></li>
+                     <li><a href="PageSelector.php?pageID=FrameContent_Designation&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Designation | Management</a></li>
                      
                       
                       <?php } ?>
@@ -286,6 +284,7 @@ include('pagelinks.php');
                     <ul class="nav child_menu"> 
                      <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
                      <li><a href="PageSelector.php?pageID=GenerateDelRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Views | Delegates</a></li>
+                     <li><a href="PageSelector.php?pageID=GenerateColRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Views | Collections</a></li>  
                         <li><a href="PageSelector.php?pageID=GenerateCarRpt&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Views | Car Parking</a></li>
                      
                        <li><a href="PageSelector.php?pageID=GenerateBudgetRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Budget Revenue</a></li>

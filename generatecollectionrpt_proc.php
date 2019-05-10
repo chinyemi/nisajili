@@ -10,9 +10,9 @@ include 'sysfunctions.php';
 
 	if (isset($_POST["submit"])) {
 		
-		CreateDBVeiwsDelegateRpt($_POST['Season']);
+		CreateDBVeiwsCollectionRpt($_POST['Season']);
 	
-$result='<div class="alert alert-success">Dashboard tabular site reports for delagates generated!</div>';
+$result='<div class="alert alert-success">Dashboard tabular site reports for collections generated!</div>';
 	
 }
 ?>
@@ -32,12 +32,12 @@ $result='<div class="alert alert-success">Dashboard tabular site reports for del
   </head>
   <body>
    	
-  <h4 align="center">Create View For Site Delegates</h4>
+  <h4 align="center">Create View For Site Collection</h4>
   	<div class="container">
   		<div class="row">
   			<div class="col-md-6 col-md-offset-3">
   				
-				<form class="form-horizontal" role="form" method="post" action="generatedelegaterpt_proc.php?Id=<?php echo $Id;?>">
+				<form class="form-horizontal" role="form" method="post" action="generatecollectionrpt_proc.php?Id=<?php echo $Id;?>">
 					<div class="form-group">
 						<div class="col-sm-10 col-sm-offset-2">
 							<?php echo $result; ?>	

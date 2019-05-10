@@ -236,6 +236,32 @@ if ($pageID=='FrameContent_UserManagement') {
 	$iFrameLink="UserManagement_html.php";
 }	
 	
+if ($pageID=='FrameContent_Designation') {
+	
+	$iFrameLink="Designation_html.php";
+}	
+
+if ($pageID=='FrameContent_CollectionReport') {
+	
+	$iFrameLink="collectionreports_proc.php";
+}	
+
+
+
+if ($pageID=='GenerateColRpt') {
+	
+	$iFrameLink="generatecollectionrpt_proc.php";
+}
+
+if ($pageID=='FrameContent_CheckedVehicleReport') {
+	
+	$iFrameLink="checked_in_vehiclereports_proc.php";
+}
+
+if ($pageID=='FrameContent_ActualRevenueReport') {
+	
+	$iFrameLink="actualrevenuereports_proc.php";
+}
 
 
 ?>
