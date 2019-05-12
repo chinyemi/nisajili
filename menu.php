@@ -87,11 +87,11 @@ include('pagelinks.php');
           
                        <li><a href="PageSelector.php?pageID=FrameContent_CollectionReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>"> Collections | Summary</a></li>
                         <li><a href="PageSelector.php?pageID=FrameContent_ActualRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual | Revenue</a></li>
-<<<<<<< HEAD
-                        <li><a href="#">Actual | Expenses</a></li>
-=======
-                        <li><a href="PageSelector.php?pageID=FrameContent_ActualExpensesReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual | Expenses</a></li>
->>>>>>> 3c297ff2a0f9e2d2d4cea18aeb7d05fa66f20ead
+
+                        <li><a href="PageSelector.php?pageID=FrameContent_ActuaExpensesReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual | Expenses</a></li>
+
+                        
+
                         <li><a href="#">Budgeted | Revenue</a></li>
                         <li><a href="#">Budgeted | Expenses</a></li>
                         <li><a href="PageSelector.php?pageID=FrameContent_CheckedVehicleReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Checked-in | Vehicle</a></li>
