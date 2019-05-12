@@ -28,12 +28,12 @@ $rowSiteInfo=mysqli_fetch_array($getSiteInfo);
 
 if ($CurrYear==$Mwaka) {
 	
-$Event = "Site Actual Expenses for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on ".$rowSiteInfo['eventtype'];
+$Event = "Site Budget Expenses for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on ".$rowSiteInfo['eventtype'];
 	
 	
 } else {
 	
-$Event = "Site Actual Expenses for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on previous year";
+$Event = "Site Budget Expenses for ".PROJECT_NAME."(".$rowSiteInfo['sitename'].") at ".$rowSiteInfo['sitevenue']." on previous year";
 	
 	
 }
@@ -56,7 +56,7 @@ $(document).ready(function() {
 $('#example').dataTable( {
  "aProcessing": true,
  "aServerSide": true,
-"ajax": "budgetrevenue_reports_proc.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>&ReportID=<?php echo $ReportID; ?>",
+"ajax": "budgetexpenses_reports_proc.php?Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>&ReportID=<?php echo $ReportID; ?>",
 } );
 } );
 
@@ -69,7 +69,7 @@ $('#example').dataTable( {
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
-<th>revenueID</th>
+<th>expenseID</th>
 <th>Type</th>
 <th>Amount</th>
 <th>DateRecorded</th>

@@ -90,10 +90,8 @@ include('pagelinks.php');
 
                         <li><a href="PageSelector.php?pageID=FrameContent_ActuaExpensesReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Actual | Expenses</a></li>
 
-                        
-
-                        <li><a href="#">Budgeted | Revenue</a></li>
-                        <li><a href="#">Budgeted | Expenses</a></li>
+                       <li><a href="PageSelector.php?pageID=FrameContent_BudgetRevenueReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted | Revenue</a></li>
+                        <li><a href="PageSelector.php?pageID=FrameContent_BudgetExpensesReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Budgeted | Expenses</a></li>
                         <li><a href="PageSelector.php?pageID=FrameContent_CheckedVehicleReport&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Checked-in | Vehicle</a></li>
                         
                         <li><a href="PageSelector.php?pageID=sentMsgs&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Message | Sents</a></li>
@@ -290,12 +288,11 @@ include('pagelinks.php');
                      <li><a href="PageSelector.php?pageID=GenerateDelRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Views | Delegates</a></li>
                      <li><a href="PageSelector.php?pageID=GenerateColRpt&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Views | Collections</a></li>  
                         <li><a href="PageSelector.php?pageID=GenerateCarRpt&Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Views | Car Parking</a></li>
-                     
                        <li><a href="PageSelector.php?pageID=GenerateBudgetRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Budget Revenue</a></li>
                         <li><a href="PageSelector.php?pageID=GenerateActualRevenueRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Actual Revenue</a></li>
                         <li><a href="PageSelector.php?pageID=GenerateBudgetExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Budget Expenses</a></li>
                         <li><a href="PageSelector.php?pageID=GenerateActualExpenseRpt&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Actual Expenses</a></li>
-                     
+                        <li><a href="PageSelector.php?pageID=FrameContent_PaymentOptions&Id=<?php echo $Id; ?>&Year=<?php echo '2019'; ?>">Views | Payment Options</a></li>
                       
                       <?php } ?>
                     

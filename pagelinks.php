@@ -270,4 +270,20 @@ if ($pageID=='FrameContent_ActuaExpensesReport') {
 }
 
 
+if ($pageID=='FrameContent_PaymentOptions') {
+	
+	$iFrameLink="generatepaymentoptions_proc.php";
+}
+
+if ($pageID=='FrameContent_BudgetRevenueReport') {
+	
+	$iFrameLink="budgetrevenuereports_proc.php";
+}
+
+if ($pageID=='FrameContent_BudgetExpensesReport') {
+	
+	$iFrameLink="budgetexpensesreports_proc.php";
+}
+
+
 ?>

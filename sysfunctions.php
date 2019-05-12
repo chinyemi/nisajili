@@ -183,6 +183,35 @@ function CreateDBVeiwsActualExpense($CurrYear) {
 }
 
 
+function CreateDBVeiwsPaymentOptions() {
+
+    include '../Includes.php';
+	
+
+        $sqlPaymentOptionsOnline = "CREATE OR REPLACE
+  
+    VIEW " . DB_DATABASE . ".vw_PaymentOptions_Online  
+    AS
+(SELECT * FROM `PaymentOptions` WHERE `Type` = 'Online')";
+        $createViewsPaymentOptionOnline = mysqli_query($conn, $sqlPaymentOptionsOnline);
+	
+	
+	
+	
+         $sqlPaymentOptionsManual = "CREATE OR REPLACE
+  
+    VIEW " . DB_DATABASE . ".vw_PaymentOptions_Manual  
+    AS
+(SELECT * FROM `PaymentOptions` WHERE `Type` = 'Manual')";
+        $createViewsPaymentOptionManual = mysqli_query($conn, $sqlPaymentOptionsManual);
+	
+	
+    
+}
+
+
+
+
 
 //Get sites names list for graphs (seperated by commas eg. 'site1','site2','site3','site4','siten')
 function GraphSitenNames() { 

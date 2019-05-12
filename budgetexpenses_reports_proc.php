@@ -9,12 +9,12 @@ require_once('header.php');
    
 $ReportID=$_GET['ReportID'];
 $CurrYear=$_GET['Year'];
+   
 
-    
-    $aColumns = array('revenueID','Type','Amount','DateRecorded','Description','Site','glsyear');
+    $aColumns = array('expenseID','Type','Amount','DateRecorded','Description','Site','glsyear');
      
     
-    $sIndexColumn = "revenueID";
+    $sIndexColumn = "expenseID";
      
  
 
@@ -26,10 +26,10 @@ $CurrYear=$_GET['Year'];
   $rowSiteInfo=mysqli_fetch_array($getSiteInfo);	
                     
     if ($ReportID==$rowSiteInfo['sitename']."_".$CurrYear) {
-    $sTable = "vw_actualexpenses_".$CurrYear."_".$rowSiteInfo['sitename'];
+    $sTable = "vw_budgetexpenses_".$CurrYear."_".$rowSiteInfo['sitename'];
    } 
 
-	   
+	 
    }
 
      
