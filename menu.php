@@ -261,7 +261,7 @@ include('pagelinks.php');
                         
                         <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Event | Dates</a></li>
                        
-                       <li><a href="PageSelector.php?pageID=GLSPackage&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Package | Management</a></li>
+                       <li><a href="PageSelector.php?pageID=Package&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Package | Management</a></li>
                       
                       <?php } ?>
                       
