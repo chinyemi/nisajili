@@ -48,10 +48,10 @@ require_once('header.php');
 					<thead>
 						<tr>
             				
-
             				 <th>package_name</th>
             				 <th>paid_nocash</th>
                              <th>remarks</th>
+                             <th>toggle</th>
                            
 							<th>Update</th>
 							<th>Delete</th>
@@ -89,12 +89,22 @@ require_once('header.php');
   					<option value="NO">NO</option>
  	               
 					</select>
-                    <br />
+                    <br />      
 					
 					<label>remarks</label>
 					<input type="text" name="remarks" id="remarks" class="form-control" />
 					
 					<br />
+					
+					<label>toggle</label>
+				
+					<select name="toggle" id="toggle" class="form-control" required>
+        			<option selected disabled>--Select--</option>
+  					<option value="YES">YES</option>
+  					<option value="NO">NO</option>
+ 	               
+					</select>
+                    <br /> 
 					
 				</div>
 				<div class="modal-footer">
@@ -142,6 +152,7 @@ $(document).ready(function(){
 		var package_name = $('#package_name').val();
 		var paid_nocash = $('#paid_nocash').val();
 		var remarks = $('#remarks').val();
+        var toggle = $('#toggle').val();
 		
 		
 	
@@ -169,6 +180,7 @@ $(document).ready(function(){
 	});
 	
 	
+	
 	$(document).on('click', '.update', function(){
 		var id = $(this).attr("id");
 		$.ajax({
@@ -183,6 +195,7 @@ $(document).ready(function(){
 				$('#package_name').val(data.package_name);
 				$('#paid_nocash').val(data.paid_nocash);
 				$('#remarks').val(data.remarks);
+                $('#toggle').val(data.toggle);
 				
 			
 				$('.modal-title').text("Edit Package");
