@@ -262,7 +262,7 @@ include('pagelinks.php');
                         <li><a href="PageSelector.php?pageID=SysRates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Registration | Fees</a></li>
                         
                         <li><a href="PageSelector.php?pageID=GLSdates&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Event | Dates</a></li>
-           
+                        <li><a href="PageSelector.php?pageID=FrameContent_PackageInfo&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Package | Details</a></li>
                       
                       <?php } ?>
                       

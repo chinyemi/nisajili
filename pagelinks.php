@@ -285,5 +285,10 @@ if ($pageID=='FrameContent_BudgetExpensesReport') {
 	$iFrameLink="budgetexpensesreports_proc.php";
 }
 
+if ($pageID=='FrameContent_PackageInfo') {
+	
+	$iFrameLink="Packages_html.php";
+}
+
 
 ?>
