@@ -14,8 +14,8 @@ if(isset($_POST["operation"]))
 	{
 		
 		$statement = $connection->prepare("
-			INSERT INTO packageinfo (package_name, paid_nocash, remarks) 
-			VALUES (:package_name, :paid_nocash, :remarks)
+			INSERT INTO packageinfo (package_name, paid_nocash, remarks, toggle) 
+			VALUES (:package_name, :paid_nocash, :remarks, :toggle)
 		");
 		$result = $statement->execute(
 			array(
@@ -24,6 +24,7 @@ if(isset($_POST["operation"]))
 				':package_name'	=>	$_POST["package_name"],
 			    ':paid_nocash'	=>	$_POST["paid_nocash"],
 			    ':remarks'	=>	$_POST["remarks"],
+			    ':toggle'	=>	$_POST["toggle"],
 			
 			)
 		);
@@ -40,7 +41,7 @@ if(isset($_POST["operation"]))
 	
 		$statement = $connection->prepare(
 			"UPDATE packageinfo 
-			SET package_name = :package_name, paid_nocash = :paid_nocash, remarks = :remarks
+			SET package_name = :package_name, paid_nocash = :paid_nocash, remarks = :remarks, toggle = :toggle
 			WHERE id = :id
 			"
 		);
@@ -50,6 +51,7 @@ if(isset($_POST["operation"]))
 				':package_name'	=>	$_POST["package_name"],
 				':paid_nocash'	=>	$_POST["paid_nocash"],
 			    ':remarks'	=>	$_POST["remarks"],
+			    ':toggle'	=>	$_POST["toggle"],
 
 				':id'			=>	$_POST["id"]
 			)

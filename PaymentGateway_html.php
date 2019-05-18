@@ -36,22 +36,30 @@ require_once('header.php');
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">Manage | Package</h1>
+			<h1 align="center">Manage | Payment Gateway</h1>
 			
 			<div class="table-responsive">
 				
 				<div align="left">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add Package</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add Payment Gateway</button>
 				</div>
 				<br/>
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-            				
-            				 <th>package_name</th>
-            				 <th>paid_nocash</th>
-                             <th>remarks</th>
-                             <th>toggle</th>
+
+   					 
+            				 <th>GatewayName</th>
+            				 <th>Currency</th>
+                             <th>Toggle</th>
+                             <th>GatwayMobile</th>
+                             <th>GatewayEmail</th>
+                             <th>GatwayAddress</th>
+                             <th>Description</th>
+                             <th>Type</th>
+                             <th>GatewayKey</th>
+                             <th>GatewaySecret</th>
+                           
                            
 							<th>Update</th>
 							<th>Delete</th>
@@ -71,19 +79,25 @@ require_once('header.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Package</h4>
+					<h4 class="modal-title">Add Payment Gateway</h4>
 				</div>
 				<div class="modal-body">
+					
+					
 
-				
-					<label>package_name</label>
-					<input type="text" name="package_name" id="package_name" class="form-control" />
+					<label>GatewayName</label>
+					<input type="text" name="GatewayName" id="GatewayName" class="form-control" />
 					
 					<br />
 					
-					<label>paid_nocash</label>
+					<label>Currency</label>
+					<input type="text" name="Currency" id="Currency" class="form-control" />
+					
+					<br />
+					
+					<label>Toggle</label>
 				
-					<select name="paid_nocash" id="paid_nocash" class="form-control" required>
+					<select name="Toggle" id="Toggle" class="form-control" required>
         			<option selected disabled>--Select--</option>
   					<option value="YES">YES</option>
   					<option value="NO">NO</option>
@@ -91,24 +105,50 @@ require_once('header.php');
 					</select>
                     <br />      
 					
-					<label>remarks</label>
-					<input type="text" name="remarks" id="remarks" class="form-control" />
+					<label>GatwayMobile</label>
+					<input type="text" name="GatwayMobile" id="GatwayMobile" class="form-control" />
 					
 					<br />
 					
-					<label>toggle</label>
+					<label>GatewayEmail</label>
+					<input type="text" name="GatewayEmail" id="GatewayEmail" class="form-control" />
+					
+					<br />
+					
+					<label>GatwayAddress</label>
+					<input type="text" name="GatwayAddress" id="GatwayAddress" class="form-control" />
+					
+					<br />
+					
+					<label>Description</label>
+					<input type="text" name="Description" id="Description" class="form-control" />
+					
+					<br />
+					
+					<label>Type</label>
 				
-					<select name="toggle" id="toggle" class="form-control" required>
+					<select name="Type" id="Type" class="form-control" required>
         			<option selected disabled>--Select--</option>
-  					<option value="YES">YES</option>
-  					<option value="NO">NO</option>
+  					<option value="Online">Online</option>
+  					<option value="Manual">Manual</option>
  	               
 					</select>
                     <br /> 
+                    
+                    <label>GatewayKey</label>
+					<input type="text" name="GatewayKey" id="GatewayKey" class="form-control" />
+					
+					<br />
+					
+					<label>GatewaySecret</label>
+					<input type="text" name="GatewaySecret" id="GatewaySecret" class="form-control" />
+					
+					<br />
+					
 					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="id" id="id" />
+					<input type="hidden" name="GatewayID" id="GatewayID" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -122,7 +162,7 @@ require_once('header.php');
 $(document).ready(function(){
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
-		$('.modal-title').text("Add Package");
+		$('.modal-title').text("Add Payment Gateway");
 		$('#action').val("Add");
 		$('#operation').val("Add");
 		
@@ -133,12 +173,12 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"fetchPackages.php?Id=<?php echo $Id;?>",
+			url:"fetchPaymentGateways.php?Id=<?php echo $Id;?>",
 			type:"POST"
 		},
 		"columnDefs":[
 			{
-				"targets":[0, 2, 3],
+				"targets":[0, 3, 4],
 				"orderable":false,
 			},
 		],
@@ -149,17 +189,22 @@ $(document).ready(function(){
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var package_name = $('#package_name').val();
-		var paid_nocash = $('#paid_nocash').val();
-		var remarks = $('#remarks').val();
-        var toggle = $('#toggle').val();
-		
+		var GatewayName = $('#GatewayName').val();
+		var Currency = $('#Currency').val();
+		var Toggle = $('#Toggle').val();
+		var GatwayMobile = $('#GatwayMobile').val();
+		var GatewayEmail = $('#GatewayEmail').val();
+		var GatwayAddress = $('#GatwayAddress').val();
+		var Description = $('#Description').val();
+		var Type = $('#Type').val();
+		var GatewayKey = $('#GatewayKey').val();
+		var GatewaySecret = $('#GatewaySecret').val();
 		
 	
-		if(package_name != '' && paid_nocash != '')
+		if(GatewayName != '' && Toggle != '')
 		{
 			$.ajax({
-				url:"insertPackages.php?Id=<?php echo $Id;?>",
+				url:"insertPaymentGateways.php?Id=<?php echo $Id;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -175,31 +220,35 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert("Fields are Required");
+			alert("Both Fields are Required");
 		}
 	});
 	
-	
-	
+
 	$(document).on('click', '.update', function(){
-		var id = $(this).attr("id");
+		var GatewayID = $(this).attr("GatewayID");
 		$.ajax({
-			url:"fetch_singlePackages.php?Id=<?php echo $Id;?>",
+			url:"fetch_singlePaymentGateways.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{id:id},
+			data:{GatewayID:GatewayID},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#package_name').val(data.package_name);
-				$('#paid_nocash').val(data.paid_nocash);
-				$('#remarks').val(data.remarks);
-                $('#toggle').val(data.toggle);
-				
+				$('#GatewayName').val(data.GatewayName);
+				$('#Currency').val(data.Currency);
+				$('#Toggle').val(data.Toggle);
+				$('#GatwayMobile').val(data.GatwayMobile);
+				$('#GatewayEmail').val(data.GatewayEmail);
+				$('#GatwayAddress').val(data.GatwayAddress);
+				$('#Description').val(data.Description);
+				$('#Type').val(data.Type);
+				$('#GatewayKey').val(data.GatewayKey);
+				$('#GatewaySecret').val(data.GatewaySecret);
 			
-				$('.modal-title').text("Edit Package");
-				$('#id').val(id);
+				$('.modal-title').text("Edit Payment");
+				$('#GatewayID').val(GatewayID);
 				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
@@ -208,13 +257,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var id = $(this).attr("id");
+		var GatewayID = $(this).attr("GatewayID");
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deletePackages.php?Id=<?php echo $Id;?>",
+				url:"deletePaymentGateways.php?Id=<?php echo $Id;?>",
 				method:"POST",
-				data:{id:id},
+				data:{GatewayID:GatewayID},
 				success:function(data)
 				{
 					alert(data);

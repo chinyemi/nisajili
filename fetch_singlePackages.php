@@ -24,6 +24,7 @@ if(isset($_POST["id"]))
 		$output["package_name"] = $row["package_name"];
 		$output["paid_nocash"] = $row["paid_nocash"];
 		$output["remarks"] = $row["remarks"];
+		$output["toggle"] = $row["toggle"];
 		
 	
 		

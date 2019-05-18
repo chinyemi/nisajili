@@ -106,32 +106,44 @@ include('pagelinks.php');
                 
                 </ul>
               </div> 
-              <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
+              
               <div class="menu_section">
-                <h3>Messaging</h3>
+                <h3>Communication</h3>
                 <ul class="nav side-menu">
-                 <li><a><i class="fa fa-comment"></i>SMS<span class="fa fa-chevron-down"></span></a>
+                 <li><a><i class="glyphicon glyphicon-phone"></i>Messaging Management <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
+                     <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
                      
-                        <li><a href="PageSelector.php?pageID=FrameContent_SMS&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">SMS | Portal</a></li>
-                        <li><a href="#">SMS | System</a></li>
+						   <li><a href="PageSelector.php?pageID=defineGroups&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Create | Group</a></li>
+                      
+                        <li><a href="PageSelector.php?pageID=assignMemberToGroups&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Assign | Group</a></li>
+                       
+                       <li><a href="PageSelector.php?pageID=assignMemberToIndividual&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Assign | Individual</a></li>
+                      
+                        
+                       <li><a href="PageSelector.php?pageID=textSMS&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Create | SMS</a></li>
+                       
+                       <li><a href="PageSelector.php?pageID=sendSMS&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Send | SMS</a></li>
+                       
+                       
+                       
+                        <li><a href="PageSelector.php?pageID=sendeEmail&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Send | Email</a></li>
+                       
+                       
+                      <li><a href="PageSelector.php?pageID=watsapMsgs&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Send | WhatsApp</a></li>
+                      
+                       <li><a href="PageSelector.php?pageID=smsBalance&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Recharge | Messaging</a></li>
+                    
+                        
+                      <?php } ?>
                       
                     </ul>
                   </li>
                   
-                  <li><a><i class="fa fa-whatsapp"></i>WhatsApp Portal<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu"> 
-                     
-						 <li><a href="PageSelector.php?pageID=FrameContent_SMS&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">WhatsApp | Portal</a></li>
-                        <li><a href="#">WhatsApp | System</a></li>
-                      
-                     
-                    </ul>
-                  </li>
+            
                 
                 </ul>
               </div> 
-                   <?php } ?>
                   
             <div class="menu_section">
                 <h3>Financials</h3>
@@ -301,15 +313,13 @@ include('pagelinks.php');
                     </ul>
                   </li>   
                   
-                <li><a><i class="glyphicon glyphicon-credit-card"></i> Payment | Options <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="glyphicon glyphicon-credit-card"></i> Online | Payment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu"> 
                      <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
                       
-                      <li><a href="PageSelector.php?pageID=FrameContent_PaymentOnline&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Payment | Online</a></li>
-                      <li><a href="PageSelector.php?pageID=FrameContent_PaymentManual&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Payment | Manual</a></li>
+                 
       
-                      <li><a href="paymentgateway.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">PesaPal | Portal</a></li>
-                      <li><a href="#">DirectPay | Portal</a></li>
+                      <li><a href="paymentgateway.php?Id=<?php echo $Id;?>&Year=<?php echo '2019';?>">Payments | Gateway</a></li>
                       
                       <?php } ?>
                       

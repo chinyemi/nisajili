@@ -5,12 +5,12 @@ require_once('header.php');
 ?>
 <?php
 
-//``id``package_name``paid_nocash``remarks`
+
 
 include('functionPackages.php');
 $query = '';
 $output = array();
-$query .= "SELECT `id`,`package_name`, `paid_nocash` , `remarks` FROM packageinfo ";
+$query .= "SELECT `id`,`package_name`, `paid_nocash` , `remarks`, `toggle` FROM packageinfo ";
 if(isset($_POST["search"]["value"]))
 {
 	$query .= 'WHERE package_name LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -44,6 +44,7 @@ foreach($result as $row)
 	$sub_array[] = $row["package_name"];
 	$sub_array[] = $row["paid_nocash"];
 	$sub_array[] = $row["remarks"];
+	$sub_array[] = $row["toggle"];
 	
 
 

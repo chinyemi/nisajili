@@ -290,5 +290,19 @@ if ($pageID=='FrameContent_PackageInfo') {
 	$iFrameLink="Packages_html.php";
 }
 
+if ($pageID=='FrameContent_SMS') {
+	
+	$iFrameLink="https://portal.infobip.com";
+}
+
+if ($pageID=='FrameContent_PaymentOnline') {
+               
+   $iFrameLink="PaymentOnline_html.php";
+}
+
+if ($pageID=='FrameContent_PaymentManual') {
+               
+   $iFrameLink="PaymentManual_html.php";
+}
 
 ?>
