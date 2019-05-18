@@ -32,7 +32,7 @@ if(isset($_POST["InfoID"]))
 		
 		if($row["picture1"] != '')
 		{
-			$output['picture1'] = '<img src="'.$imagespath_read.'/products/'.$row["picture1"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["picture1"].'" />';
+			$output['picture1'] = '<img src="'.$imagespath_read.$row["picture1"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["picture1"].'" />';
 		}
 		else
 		{

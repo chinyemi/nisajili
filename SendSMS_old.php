@@ -1,6 +1,6 @@
 <?php 
 
-require_once('header.php');
+include '../Includes.php';
 
  $sms = new SMSSender();
    $NewMobileNumber = preg_replace('/^0?/', COUNTRY_CODE, $Mobile);

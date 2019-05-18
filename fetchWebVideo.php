@@ -41,7 +41,7 @@ foreach($result as $row)
 	$thumbnailimage = '';
 	if($row["thumbnailimage"] != '')
 	{
-		$thumbnailimage = '<img src="'.$imagespath_read.'/videos/'.$row["thumbnailimage"].'" class="img-thumbnail" width="50" height="35" />';
+		$thumbnailimage = '<img src="'.$imagespath_read.$row["thumbnailimage"].'" class="img-thumbnail" width="50" height="35" />';
 	}
 	else
 	{

@@ -14,7 +14,7 @@ if(isset($_POST["InfoID"]))
 	$picture1 = get_image_name($_POST["InfoID"]);
 	if($picture1 != '')
 	{
-		unlink($imagespath_read.'/products/'. $picture1);
+		unlink($imagespath_read.$picture1);
 	}
 	
 	$statement = $connection->prepare(

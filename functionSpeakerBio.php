@@ -11,7 +11,7 @@ function upload_image()
 		
 		//Maintain Same Image nmae
 		$new_name = $extension[0] . '.' . $extension[1];
-		$destination = $imagespath_write.'/products/'. $new_name;
+		$destination = $imagespath_write.$new_name;
 		move_uploaded_file($_FILES['picture1']['tmp_name'], $destination);
 		return $new_name;
 	}
