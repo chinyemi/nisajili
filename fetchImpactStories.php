@@ -7,15 +7,15 @@ require_once('header.php');
 
 
 
-include('functionSpeakerContents.php');
+include('functionImpactStories.php');
 $query = '';
 $output = array();
-$query .= "SELECT `contentID`,`speakerID`,`contentURL`,`imageLink`,`fa_Icon`, 	fullname,description FROM webspeakercontents c, webspeakers s where 
-s.InfoID=c.speakerID   ";
+$query .= "SELECT `storyID`,c.`siteID`,`storyURL`,`imageLink`,`fa_Icon`,`description`,`status`,`storyTeller`,`sitename` FROM webimpactstories c, glssiteinfo s WHERE 
+s.siteID =c.siteID ";
 
 if(isset($_POST["search"]["value"]))
 {
-	$query .= 'and ( fullname LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'and ( sitename LIKE "%'.$_POST["search"]["value"].'%" ';
 	$query .= 'OR description LIKE "%'.$_POST["search"]["value"].'%" )';
 
 
@@ -27,7 +27,7 @@ if(isset($_POST["order"]))
 }
 else
 {
-	$query .= 'ORDER BY contentID DESC ';
+	$query .= 'ORDER BY storyID DESC ';
 }
 if($_POST["length"] != -1)
 {
@@ -44,16 +44,18 @@ foreach($result as $row)
 	$sub_array = array();
 	
 	
-	$sub_array[] = $row["fullname"];
-	$sub_array[] = $row["contentURL"];
+	$sub_array[] = $row["sitename"];
+	$sub_array[] = $row["storyURL"];
 	$sub_array[] = $row["imageLink"];
     $sub_array[] = $row["fa_Icon"];
     $sub_array[] = $row["description"];
+	$sub_array[] = $row["status"];
+	$sub_array[] = $row["storyTeller"];
   
 
 	
-	$sub_array[] = '<button type="button" name="update" contentID="'.$row["contentID"].'" class="btn btn-warning btn-xs update">Update</button>';
-	$sub_array[] = '<button type="button" name="delete" contentID="'.$row["contentID"].'" class="btn btn-danger btn-xs delete">Delete</button>';
+	$sub_array[] = '<button type="button" name="update" storyID="'.$row["storyID"].'" class="btn btn-warning btn-xs update">Update</button>';
+	$sub_array[] = '<button type="button" name="delete" storyID="'.$row["storyID"].'" class="btn btn-danger btn-xs delete">Delete</button>';
 	$data[] = $sub_array;
 }
 $output = array(

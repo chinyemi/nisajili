@@ -6,18 +6,18 @@ require_once('header.php');
 <?php
 
 
-include("functionSpeakerContents.php");
+include("functionImpactStories.php");
 
-if(isset($_POST["contentID"]))
+if(isset($_POST["storyID"]))
 {
 	
 	
 	$statement = $connection->prepare(
-		"DELETE FROM webspeakercontents WHERE contentID = :contentID"
+		"DELETE FROM webimpactstories WHERE storyID = :storyID"
 	);
 	$result = $statement->execute(
 		array(
-			':contentID'	=>	$_POST["contentID"]
+			':storyID'	=>	$_POST["storyID"]
 		)
 	);
 	

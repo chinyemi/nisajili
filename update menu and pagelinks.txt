@@ -1,13 +1,13 @@
 on Menu:
 kwenye Website Administration uta add hii link:
 
-  <li><a href="PageSelector.php?pageID=FrameContent_SpeakerContents&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Contents | Speakers</a></li>
+  <li><a href="PageSelector.php?pageID=FrameContent_ImpactStories&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">GLS | Impact Stories</a></li>
 
 
 kwenye pagelinks uta add hii link:
 
-if ($pageID=='FrameContent_SpeakerContents') {
+if ($pageID=='FrameContent_ImpactStories') {
 	
-	$iFrameLink="SpeakersContents_html.php";
+	$iFrameLink="ImpactStories_html.php";
 }
 
