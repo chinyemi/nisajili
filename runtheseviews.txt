@@ -1,0 +1,52 @@
+
+CREATE TABLE `vw_SiteDates` (
+`siteID` int(2)
+,`sitedate` varchar(100)
+,`inconferencedeadline` date
+,`superearlybirddeadline` date
+,`earlybirddeadline` date
+,`sitename` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_SiteRates`
+-- (See below for the actual view)
+--
+CREATE TABLE `vw_SiteRates` (
+`rateID` int(11)
+,`siteID` int(11)
+,`inconferencerate` double(10,2)
+,`superearlybirdrate_normal` double(10,2)
+,`superearlybirdrate_vip` double(10,2)
+,`earlybirdrate_normal` double(10,2)
+,`earlybirdrate_vip` double(10,2)
+,`regularrate_normal` double(10,2)
+,`regularrate_vip` double(10,2)
+,`studentrate` double(10,2)
+,`grouprate_normal` double(10,2)
+,`grouprate_vip` double(10,2)
+,`internationalrate` double(10,2)
+,`exchangerate` double(10,2)
+,`sitename` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_SiteDates`
+--
+DROP TABLE IF EXISTS `vw_SiteDates`;
+
+CREATE VIEW `vw_SiteDates`  AS  select `d`.`siteID` AS `siteID`,`d`.`sitedate` AS `sitedate`,`d`.`inconferencedeadline` AS `inconferencedeadline`,`d`.`superearlybirddeadline` AS `superearlybirddeadline`,`d`.`earlybirddeadline` AS `earlybirddeadline`,`s`.`sitename` AS `sitename` from (`glssitedate` `d` join `glssiteinfo` `s`) where (`d`.`siteID` = `s`.`siteID`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_SiteRates`
+--
+DROP TABLE IF EXISTS `vw_SiteRates`;
+
+CREATE VIEW `vw_SiteRates`  AS  select `r`.`rateID` AS `rateID`,`r`.`siteID` AS `siteID`,`r`.`inconferencerate` AS `inconferencerate`,`r`.`superearlybirdrate_normal` AS `superearlybirdrate_normal`,`r`.`superearlybirdrate_vip` AS `superearlybirdrate_vip`,`r`.`earlybirdrate_normal` AS `earlybirdrate_normal`,`r`.`earlybirdrate_vip` AS `earlybirdrate_vip`,`r`.`regularrate_normal` AS `regularrate_normal`,`r`.`regularrate_vip` AS `regularrate_vip`,`r`.`studentrate` AS `studentrate`,`r`.`grouprate_normal` AS `grouprate_normal`,`r`.`grouprate_vip` AS `grouprate_vip`,`r`.`internationalrate` AS `internationalrate`,`r`.`exchangerate` AS `exchangerate`,`s`.`sitename` AS `sitename` from (`glssiterates` `r` join `glssiteinfo` `s`) where (`r`.`siteID` = `s`.`siteID`) ;
+COMMIT;

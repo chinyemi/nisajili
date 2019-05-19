@@ -1,0 +1,13 @@
+on Menu:
+kwenye Website Administration uta add hii link:
+
+  <li><a href="PageSelector.php?pageID=FrameContent_SpeakerContents&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Contents | Speakers</a></li>
+
+
+kwenye pagelinks uta add hii link:
+
+if ($pageID=='FrameContent_SpeakerContents') {
+	
+	$iFrameLink="SpeakersContents_html.php";
+}
+
