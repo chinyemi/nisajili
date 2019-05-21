@@ -50,13 +50,13 @@ require_once('header.php');
 
    
 							 
-            			
+            			     <th>Document</th>
             				 <th>Type</th>
                              <th>Amount</th>
                              <th>Date Recorded</th>
                              <th>Description</th>
                              <th>Site</th>
-                               <th>Season</th>
+                            <th>Season</th>
                              
 							<th>Update</th>
 							<th>Delete</th>
@@ -132,7 +132,11 @@ require_once('header.php');
   					
  	               <?php 	} ?>
 					</select>
-<br />
+                 <br />
+                 <label>Upload Supporting Document</label>
+					<input type="file" name="image" id="image" />
+					<span id="user_uploaded_image"></span>
+					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="revenueID" id="revenueID" />
@@ -152,7 +156,7 @@ $(document).ready(function(){
 		$('.modal-title').text("Add Actual Revenue");
 		$('#action').val("Add");
 		$('#operation').val("Add");
-		
+		$('#user_uploaded_image').html('');
 	});
 
 	var dataTable = $('#user_data').DataTable({
@@ -181,9 +185,18 @@ $(document).ready(function(){
 		var DateRecorded = $('#DateRecorded').val();
 		var Description = $('#Description').val();
 		var Site = $('#Site').val();
-                var glsyear = $('#glsyear').val();
+        var glsyear = $('#glsyear').val();
 		
-	
+	    var extension = $('#image').val().split('.').pop().toLowerCase();
+		if(extension != '')
+		{
+			if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+			{
+				alert("Invalid Image File");
+				$('#image').val('');
+				return false;
+			}
+		}	
 		if(Type != '' && Amount != '')
 		{
 			$.ajax({
@@ -224,8 +237,9 @@ $(document).ready(function(){
 				$('#DateRecorded').val(data.DateRecorded);
 				$('#Description').val(data.Description);
 				$('#Site').val(data.Site);
-                                $('.modal-title').text("Edit Revenue");
+                $('.modal-title').text("Edit Revenue");
 				$('#revenueID').val(revenueID);
+				$('#user_uploaded_image').html(data.image);
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}

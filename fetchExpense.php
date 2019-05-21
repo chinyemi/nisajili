@@ -10,7 +10,7 @@ require_once('header.php');
 include('functionExpense.php');
 $query = '';
 $output = array();
-$query .= "SELECT `expenseID`,`Type`,`Amount`,`DateRecorded`,REPLACE(`Description`,'/','') Description ,`Site`,`glsyear` FROM actual_expenses ";
+$query .= "SELECT `expenseID`,`Type`,`Amount`,`DateRecorded`,REPLACE(`Description`,'/','') Description ,`Site`,`glsyear`,`image` FROM actual_expenses ";
 if(isset($_POST["search"]["value"]))
 {
 	$query .= 'WHERE Type LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -39,9 +39,19 @@ $filtered_rows = $statement->rowCount();
 foreach($result as $row)
 {
 	
+	$image = '';
+	if($row["image"] != '')
+	{
+		$image = '<img src="'.$imagespath_read.$row["image"].'" class="img-thumbnail" width="50" height="35" />';
+	}
+	else
+	{
+		$image = '';
+	}
+	
 	$sub_array = array();
 	
-	
+	$sub_array[] = $image;
 	$sub_array[] = $row["Type"];
 	$sub_array[] = $row["Amount"];
 	$sub_array[] = $row["DateRecorded"];

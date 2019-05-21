@@ -205,6 +205,7 @@ include('pagelinks.php');
                     <ul class="nav child_menu"> 
                      <?php if ($_SESSION['UserLevel']=='Administrator') { ?> 
                       <li><a href="PageSelector.php?pageID=FrameContent_Speaker_Bio&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Speaker | Biography</a></li>
+                      <li><a href="PageSelector.php?pageID=FrameContent_SpeakerContents&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Speakers | Contents</a></li>
                       
                       <li><a href="PageSelector.php?pageID=FrameContent_Web_Video&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Web | Videos</a></li>
                       

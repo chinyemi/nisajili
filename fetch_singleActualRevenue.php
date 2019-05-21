@@ -27,7 +27,15 @@ if(isset($_POST["revenueID"]))
 		$output["Site"] = $row["Site"];
                 $output["DateRecorded"] = $row["DateRecorded"];
                 $output["glsyear"] = $row["glsyear"];
-	
+	 if($row["image"] != '')
+		{
+			$output['image'] = '<img src="'.$imagespath_read.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["image"].'" />';
+		}
+		else
+		{
+			$output['image'] = '<input type="hidden" name="hidden_user_image" value="" />';
+		}
+		
 		
 	}
 	echo json_encode($output);

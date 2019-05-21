@@ -5,18 +5,18 @@ require_once('header.php');
 ?>
 <?php
 
-//`exptypeID`,`expType`,`ExpCategory`,`Description`
+
 
 include('functionActualRevenue.php');
 $query = '';
 $output = array();
-$query .= "SELECT revenueID,`Type`,Amount,DateRecorded,Site,REPLACE(`Description`,'/','') as Description,glsyear FROM actual_revenue ";
+$query .= "SELECT revenueID,`Type`,Amount,DateRecorded,Site,REPLACE(`Description`,'/','') as Description,glsyear ,`image` FROM actual_revenue ";
 if(isset($_POST["search"]["value"]))
 {
 	$query .= ' WHERE Site LIKE "%'.$_POST["search"]["value"].'%" ';
 	$query .= 'OR Amount LIKE "%'.$_POST["search"]["value"].'%" ';
 	$query .= 'OR Description LIKE "%'.$_POST["search"]["value"].'%" ';
-        $query .= 'OR glsyear LIKE "%'.$_POST["search"]["value"].'%" ';
+    $query .= 'OR glsyear LIKE "%'.$_POST["search"]["value"].'%" ';
 }
 
 if(isset($_POST["order"]))
@@ -39,10 +39,19 @@ $data = array();
 $filtered_rows = $statement->rowCount();
 foreach($result as $row)
 {
+	$image = '';
+	if($row["image"] != '')
+	{
+		$image = '<img src="'.$imagespath_read.$row["image"].'" class="img-thumbnail" width="50" height="35" />';
+	}
+	else
+	{
+		$image = '';
+	}
 	
 	$sub_array = array();
 	
-	
+	$sub_array[] = $image;
 	$sub_array[] = $row["Type"];
 	$sub_array[] = $row["Amount"];
 	$sub_array[] = $row["DateRecorded"];

@@ -50,7 +50,7 @@ require_once('header.php');
 
    
 							 
-            			
+            			     <th>Receipt</th>
             				 <th>Type</th>
                              <th>Amount</th>
                              <th>Date Recorded</th>
@@ -131,7 +131,9 @@ require_once('header.php');
  	               <?php 	} ?>
 					</select>
 					<br />
-					
+					<label>Upload Receipt</label>
+					<input type="file" name="image" id="image" />
+					<span id="user_uploaded_image"></span>
 					
 				</div>
 				<div class="modal-footer">
@@ -152,7 +154,7 @@ $(document).ready(function(){
 		$('.modal-title').text("Add Expense");
 		$('#action').val("Add");
 		$('#operation').val("Add");
-		
+		$('#user_uploaded_image').html('');
 	});
 
 	var dataTable = $('#user_data').DataTable({
@@ -182,6 +184,17 @@ $(document).ready(function(){
 		var Description = $('#Description').val();
 		var Site = $('#Site').val();
 		var glsyear = $('#glsyear').val();
+		
+		var extension = $('#image').val().split('.').pop().toLowerCase();
+		if(extension != '')
+		{
+			if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+			{
+				alert("Invalid Image File");
+				$('#image').val('');
+				return false;
+			}
+		}	
 		
 	
 		if(Type != '' && Amount != '')
@@ -228,7 +241,7 @@ $(document).ready(function(){
 			    $('#glsyear').val(data.glsyear);
 				$('.modal-title').text("Edit Expense");
 				$('#expenseID').val(expenseID);
-				
+				$('#user_uploaded_image').html(data.image);
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}

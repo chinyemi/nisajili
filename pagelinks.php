@@ -305,4 +305,10 @@ if ($pageID=='FrameContent_PaymentManual') {
    $iFrameLink="PaymentManual_html.php";
 }
 
+if ($pageID=='FrameContent_SpeakerContents') {
+	
+	$iFrameLink="SpeakersContents_html.php";
+}
+
+
 ?>
