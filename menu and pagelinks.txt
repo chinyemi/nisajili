@@ -1,0 +1,10 @@
+menu:
+
+<li><a href="PageSelector.php?pageID=FrameContent_WebFaq&Id=<?php echo $Id;?>&Year=<?php echo $CurrYear;?>">Manage | FAQ</a></li>
+
+pagelinks:
+
+if ($pageID=='FrameContent_WebFaq') {
+	
+	$iFrameLink="WebFaq_html.php";
+}
