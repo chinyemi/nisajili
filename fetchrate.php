@@ -12,23 +12,10 @@ require_once('header.php');
 include('function.php');
 $query = '';
 $output = array();
-$query .= "select * from vw_SiteRates ";
+$query .= "select `r`.`rateID` AS `rateID`,`r`.`siteID` AS `siteID`,`r`.`inconferencerate` AS `inconferencerate`,`r`.`superearlybirdrate_normal` AS `superearlybirdrate_normal`,`r`.`superearlybirdrate_vip` AS `superearlybirdrate_vip`,`r`.`earlybirdrate_normal` AS `earlybirdrate_normal`,`r`.`earlybirdrate_vip` AS `earlybirdrate_vip`,`r`.`regularrate_normal` AS `regularrate_normal`,`r`.`regularrate_vip` AS `regularrate_vip`,`r`.`studentrate` AS `studentrate`,`r`.`grouprate_normal` AS `grouprate_normal`,`r`.`grouprate_vip` AS `grouprate_vip`,`r`.`internationalrate` AS `internationalrate`,`r`.`exchangerate` AS `exchangerate`,`s`.`sitename` AS `sitename` from (`glssiterates` `r` join `glssiteinfo` `s`) where (`r`.`siteID` = `s`.`siteID`) 
+ ";
 
-if(isset($_POST["search"]["value"]))
-{
-	$query .= ' where inconferencerate LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR superearlybirdrate_normal LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR superearlybirdrate_vip LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR earlybirdrate_normal LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR earlybirdrate_vip LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR regularrate_normal LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR regularrate_vip LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR studentrate LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR grouprate_normal LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR  grouprate_vip LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR internationalrate LIKE "%'.$_POST["search"]["value"].'%" ';
-$query .= 'OR  exchangerate LIKE "%'.$_POST["search"]["value"].'%" ';
-}
+
 
 if(isset($_POST["order"]))
 {

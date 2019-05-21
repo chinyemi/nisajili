@@ -20,12 +20,12 @@ if(isset($_POST["exptypeID"]))
 	foreach($result as $row)
 	{
 
-	
+	    $output["exptypeID"] = $row["exptypeID"];
 		$output["expType"] = $row["expType"];
 		$output["ExpCategory"] = $row["ExpCategory"];
 		$output["Description"] = $row["Description"];
 		
-	
+
 		
 	}
 	echo json_encode($output);

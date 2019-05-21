@@ -186,7 +186,7 @@ if ($pageID=='FrameContent_RecordBudgetExpenses') {
 
 if ($pageID=='FrameContent_BudgetExpensesType') {
 	
-	$iFrameLink="BudgetExpensesType_html.php";
+	$iFrameLink="ExpenseType_html.php";
 }
 
 //added content
@@ -310,5 +310,9 @@ if ($pageID=='FrameContent_SpeakerContents') {
 	$iFrameLink="SpeakersContents_html.php";
 }
 
+if ($pageID=='FrameContent_WebFaq') {
+	
+	$iFrameLink="WebFaq_html.php";
+}
 
 ?>

@@ -36,27 +36,23 @@ require_once('header.php');
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">Manage | Budget Expenses</h1>
+			<h1 align="center">Manage | Expense Type</h1>
 			
 			<div class="table-responsive">
 				
 				<div align="left">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add Budget Expenses</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add Expense Type</button>
 				</div>
 				<br/>
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 
-   
-							 
-            			
             				 <th>Type</th>
-                             <th>Amount</th>
-                             <th>Date Recorded</th>
+                             <th>Category</th>
+                            
                              <th>Description</th>
-                             <th>Site</th>
-                              <th>Season</th>
+                          
 							<th>Update</th>
 							<th>Delete</th>
 						
@@ -75,67 +71,35 @@ require_once('header.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Budget Expense</h4>
+					<h4 class="modal-title">Add Expense Type</h4>
 				</div>
 				<div class="modal-body">
+						<label>Type</label>
+					<input type="text" name="expType" id="expType" class="form-control" />
+					
+					<br />
 
-					<label>Type</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
-					<?php 
-					$getExpensesType=mysqli_query($conn,"SELECT * FROM `ExpenseType`");
-		
-					?>
-					<select name="Type" id="Type" class="form-control" required>
-        			<option selected disabled>--Select Type--</option>
-        			<?php 	while ($rowExpensesType=mysqli_fetch_array($getExpensesType)) { ?>
-  					<option value="<?php echo $rowExpensesType['expType']; ?>"><?php echo $rowExpensesType['expType']."(".$rowExpensesType['ExpCategory'].")"; ?></option>
-  					 <?php 	} ?>
-					</select>
-					<br />
-					<label>Amount</label>
-					<input type="text" name="Amount" id="Amount" class="form-control" />
+					<label>Category</label>
 					
+					<?php $getExpCat=mysqli_query($conn,"SELECT * FROM `ExpenseCategory`"); ?>
+					<select name="ExpCategory" id="ExpCategory" class="form-control" required>
+        			<option selected disabled>--Select Expense Category--</option>
+        			<?php while ($rowExpCat=mysqli_fetch_array($getExpCat)) {
+						?>
+  					<option value="<?php echo $rowExpCat['CategoryName'];?>"><?php echo $rowExpCat['CategoryName'];?></option>
+  				    <?php } ?>
+					</select>   
 					<br />
-					<label>DateRecorded</label>
-					<input type="date" name="DateRecorded" id="DateRecorded" class="form-control" />
-					
-					<br />
+				
+
 					<label>Description</label>
 					<textarea  name="Description" id="Description" class="form-control" rows="4" cols="50"></textarea>
 					<br />
-					<label>Site</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
-					<?php 
-					$getSiteName=mysqli_query($conn,"SELECT `sitename` FROM `glssiteinfo`");
-		
-					?>
-					<select name="Site" id="Site" class="form-control" required>
-        			<option selected disabled>--Select Site--</option>
-        			<?php 	while ($rowSiteName=mysqli_fetch_array($getSiteName)) { ?>
-  					<option value="<?php echo $rowSiteName['sitename']; ?>"><?php echo $rowSiteName['sitename']; ?></option>
-  					
- 	               <?php 	} ?>
-					</select>
-					<br />
-						
-					<label>Season</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
-					<?php 
-					$getSiteSeason=mysqli_query($conn,"SELECT * FROM `siteseason`");
-		
-					?>
-                                        <select name="glsyear" id="glsyear" class="form-control" required>
-        			<option selected disabled>--Select Season--</option>
-        			<?php 	while ($rowSiteSeason=mysqli_fetch_array($getSiteSeason)) { ?>
-  					<option value="<?php echo $rowSiteSeason['Year']; ?>"><?php echo $rowSiteSeason['Year']."(". $rowSiteSeason['SeasonStatus'].")"; ?></option>
-  					
- 	               <?php 	} ?>
-					</select>
-<br />
+
 					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="expenseID" id="expenseID" />
+					<input type="hidden" name="exptypeID" id="exptypeID" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -149,18 +113,17 @@ require_once('header.php');
 $(document).ready(function(){
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
-		$('.modal-title').text("Add Budget Expense");
+		$('.modal-title').text("Add Expense");
 		$('#action').val("Add");
 		$('#operation').val("Add");
 		
 	});
-
 	var dataTable = $('#user_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"fetchBudgetExpense.php?Id=<?php echo $Id;?>",
+			url:"fetchExpenseType.php?Id=<?php echo $Id;?>",
 			type:"POST"
 		},
 		"columnDefs":[
@@ -171,22 +134,20 @@ $(document).ready(function(){
 		],
 
 	});
-	
+
 
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var Type = $('#Type').val();
-		var Amount = $('#Amount').val();
-		var DateRecorded = $('#DateRecorded').val();
+		var expType = $('#expType').val();
+		var ExpCategory = $('#ExpCategory').val();
 		var Description = $('#Description').val();
-		var Site = $('#Site').val();
 		
-	
-		if(Type != '' && Amount != '')
+
+		if(expType != '' && ExpCategory != '')
 		{
 			$.ajax({
-				url:"insertBudgetExpense.php?Id=<?php echo $Id;?>",
+				url:"insertExpenseType.php?Id=<?php echo $Id;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -209,40 +170,38 @@ $(document).ready(function(){
 
 
 	$(document).on('click', '.update', function(){
-		var expenseID = $(this).attr("expenseID");
+		var exptypeID = $(this).attr("exptypeID");
 		$.ajax({
-			url:"fetch_singleBudgetExpense.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleExpenseType.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{expenseID:expenseID},
+			data:{exptypeID:exptypeID},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#Type').val(data.Type);
-				$('#Amount').val(data.Amount);
-				$('#DateRecorded').val(data.DateRecorded);
+				$('#expType').val(data.expType);
+				$('#ExpCategory').val(data.ExpCategory);
 				$('#Description').val(data.Description);
-				$('#Site').val(data.Site);
-			        $('#glsyear').val(data.glsyear);
+				
 			
-				$('.modal-title').text("Edit Expense");
-				$('#expenseID').val(expenseID);
+				$('.modal-title').text("Edit Revenue Type");
+				$('#exptypeID').val(exptypeID);
 				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
 			}
 		})
 	});
-	
+
 	$(document).on('click', '.delete', function(){
-		var expenseID = $(this).attr("expenseID");
+		var exptypeID = $(this).attr("exptypeID");
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteBudgetExpense.php?Id=<?php echo $Id;?>",
+				url:"deleteExpenseType.php?Id=<?php echo $Id;?>",
 				method:"POST",
-				data:{expenseID:expenseID},
+				data:{exptypeID:exptypeID},
 				success:function(data)
 				{
 					alert(data);

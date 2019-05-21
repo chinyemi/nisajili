@@ -36,22 +36,22 @@ require_once('header.php');
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">Manage | Expenses Type</h1>
+			<h1 align="center">Manage | FAQ</h1>
 			
 			<div class="table-responsive">
 				
 				<div align="left">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add Expenses Type</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Add FAQ</button>
 				</div>
 				<br/>
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-
-            				 <th>expType</th>
-                             <th>ExpCategory</th>
+           				 
+            				 <th>category</th>
+                             <th>quiz</th>
                             
-                             <th>Description</th>
+                             <th>answer</th>
                           
 							<th>Update</th>
 							<th>Delete</th>
@@ -71,36 +71,28 @@ require_once('header.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Expense Type</h4>
+					<h4 class="modal-title">Add FAQ</h4>
 				</div>
 				<div class="modal-body">
-						<label>Exp Type</label>
-					<input type="text" name="expType" id="expType" class="form-control" />
+						<label>category</label>
+					<input type="text" name="category" id="category" class="form-control" />
 					
 					<br />
-
-					<label>Exp Category</label>
-					<!--input type="text" name="Year" id="Year" class="form-control" /-->
-					<select name="ExpCategory" id="ExpCategory" class="form-control" required>
-        			<option selected disabled>--Select Exp Category--</option>
-  					<option value="Cost of Goods Sold">Cost of Goods Sold</option>
-  					<option value="Operating Expenses">Operating Expenses</option>
- 	                <option value="Financial Expenses">Financial Expenses</option>
- 	                <option value="Extraordinary Expenses">Extraordinary Expenses</option>
- 	                <option value="Non-Operating Expenses">Non-Operating Expenses</option>
- 	                <option value=">Non-Cash Expense">Non-Cash Expense</option>
- 	                <option value="Other Expenses">Other Expenses</option>
-					</select>
-					<br />
+				
+					<label>quiz</label>
+						<input type="text" name="quiz" id="quiz" class="form-control" />
 					
-					<label>Description</label>
-					<textarea  name="Description" id="Description" class="form-control" rows="4" cols="50"></textarea>
+					<br />
+				
+					
+					<label>answer</label>
+					<input type="textarea"  name="answer" id="answer" class="form-control" rows="4" cols="50"></textarea>
 					<br />
 					
 					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="exptypeID" id="exptypeID" />
+					<input type="hidden" name="id" id="id" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -114,7 +106,7 @@ require_once('header.php');
 $(document).ready(function(){
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
-		$('.modal-title').text("Add Expense");
+		$('.modal-title').text("Add FAQ");
 		$('#action').val("Add");
 		$('#operation').val("Add");
 		
@@ -124,31 +116,30 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"fetchExpenseType.php?Id=<?php echo $Id;?>",
+			url:"fetchWebFaq.php?Id=<?php echo $Id;?>",
 			type:"POST"
 		},
 		"columnDefs":[
 			{
-				"targets":[0, 3, 4],
+				"targets":[0, 2, 3],
 				"orderable":false,
 			},
 		],
 
 	});
-	
 
 	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
 		
-		var expType = $('#expType').val();
-		var ExpCategory = $('#ExpCategory').val();
-		var Description = $('#Description').val();
+		var category = $('#category').val();
+		var quiz = $('#quiz').val();
+		var answer = $('#answer').val();
 		
 
-		if(expType != '' && ExpCategory != '')
+		if(quiz != '' && answer != '')
 		{
 			$.ajax({
-				url:"insertExpenseType.php?Id=<?php echo $Id;?>",
+				url:"insertWebFaq.php?Id=<?php echo $Id;?>",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -169,25 +160,24 @@ $(document).ready(function(){
 	});
 	
 
-
 	$(document).on('click', '.update', function(){
-		var exptypeID = $(this).attr("exptypeID");
+		var id = $(this).attr("id");
 		$.ajax({
-			url:"fetch_singleExpenseType.php?Id=<?php echo $Id;?>",
+			url:"fetch_singleWebFaq.php?Id=<?php echo $Id;?>",
 			method:"POST",
-			data:{exptypeID:exptypeID},
+			data:{id:id},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
 				
-				$('#expType').val(data.expType);
-				$('#ExpCategory').val(data.ExpCategory);
-				$('#Description').val(data.Description);
+				$('#category').val(data.category);
+				$('#quiz').val(data.quiz);
+				$('#answer').val(data.answer);
 				
 			
-				$('.modal-title').text("Edit Expense Type");
-				$('#exptypeID').val(exptypeID);
+				$('.modal-title').text("Edit FAQ");
+				$('#id').val(id);
 				
 				$('#action').val("Edit");
 				$('#operation').val("Edit");
@@ -196,13 +186,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var exptypeID = $(this).attr("exptypeID");
+		var id = $(this).attr("id");
 		if(confirm("Are you sure you want to delete this?"))
 		{
 			$.ajax({
-				url:"deleteExpenseType.php?Id=<?php echo $Id;?>",
+				url:"deleteWebFaq.php?Id=<?php echo $Id;?>",
 				method:"POST",
-				data:{exptypeID:exptypeID},
+				data:{id:id},
 				success:function(data)
 				{
 					alert(data);

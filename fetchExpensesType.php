@@ -5,7 +5,7 @@ require_once('header.php');
 ?>
 <?php
 
-//`exptypeID`,`expType`,`ExpCategory`,`Description`
+
 
 include('functionExpenseType.php');
 $query = '';

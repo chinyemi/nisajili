@@ -4,7 +4,7 @@ require_once('header.php');
 ?>
 <?php
 
-include('functionExpenseType.php');
+include('functionRevenueType.php');
 
 if (isset($_POST["operation"])) {
     if ($_POST["operation"] == "Add") {

@@ -9,16 +9,9 @@ require_once('header.php');
 include('function.php');
 $query = '';
 $output = array();
-$query .= "SELECT * FROM vw_SiteDates  ";
-if(isset($_POST["search"]["value"]))
-{
-	$query .= 'WHERE sitedate   LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR inconferencedeadline  LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR superearlybirddeadline  LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR earlybirddeadline   LIKE "%'.$_POST["search"]["value"].'%" ';
+$query .= "select `d`.`siteID` AS `siteID`,`d`.`sitedate` AS `sitedate`,`d`.`inconferencedeadline` AS `inconferencedeadline`,`d`.`superearlybirddeadline` AS `superearlybirddeadline`,`d`.`earlybirddeadline` AS `earlybirddeadline`,`s`.`sitename` AS `sitename` from (`glssitedate` `d` join `glssiteinfo` `s`) where (`d`.`siteID` = `s`.`siteID`) ;
+  ";
 
-;
-}
 
 if(isset($_POST["order"]))
 {
@@ -53,7 +46,7 @@ foreach($result as $row)
 $output = array(
 	"draw"				=>	intval($_POST["draw"]),
 	"recordsTotal"		=> 	$filtered_rows,
-	"recordsFiltered"	=>	get_total_all_records(),
+	"recordsFiltered"	=>	$statement->rowCount(),
 	"data"				=>	$data
 );
 echo json_encode($output);
